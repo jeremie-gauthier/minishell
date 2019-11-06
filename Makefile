@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 10:03:04 by jergauth          #+#    #+#              #
-#    Updated: 2019/11/06 11:16:16 by jergauth         ###   ########.fr        #
+#    Updated: 2019/11/06 16:07:46 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ SRCS_DIR= ./srcs
 SRCS=	main.c\
 		interpreter.c\
 		exec.c\
-		shell_methods.c
+		path_methods.c\
+		core_shell.c\
+		debug.c
 
 ## COMMON OBJS
 OBJS= $(SRCS:.c=.o)
@@ -45,7 +47,7 @@ INCS = $(INC) $(LIB_INC)
 
 ## FLAGS
 CC		=	gcc
-CFLAGS	+=	-Wall -Werror -Wextra -O2 -fno-builtin -flto=full
+CFLAGS	+=	-Wall -Werror -Wextra #-O2 -fno-builtin -flto=full
 LFLAGS	+= -L $(LIBFT_DIR) -lft
 
 ## DEBUG SYMBOLS

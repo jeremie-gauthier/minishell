@@ -1,0 +1,9 @@
+*.o*
+*.swp
+*.dSYM
+*.vscode
+a.out*
+.DS_Store
+libft/*.a
+ft_ls
+*.gch

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 11:38:37 by jergauth          #+#    #+#             */
-/*   Updated: 2019/01/31 15:42:38 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/06 16:17:54 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	count_words(char const *s, char c)
+static size_t	count_words(char const *s, const char *banned)
 {
 	size_t	words;
 	size_t	in_word;
@@ -21,19 +21,19 @@ static size_t	count_words(char const *s, char c)
 	in_word = 0;
 	while (*s)
 	{
-		if (*s != c && in_word == 0)
+		if (!ft_strchr(banned, *s) && in_word == 0)
 		{
 			in_word = 1;
 			words++;
 		}
-		else if (*s == c)
+		else if (ft_strchr(banned, *s))
 			in_word = 0;
 		s++;
 	}
 	return (words);
 }
 
-char			**ft_strsplit(char const *s, char c)
+char			**ft_strsplit(char const *s, const char *banned)
 {
 	size_t	i;
 	size_t	lentab;
@@ -42,19 +42,19 @@ char			**ft_strsplit(char const *s, char c)
 	if (!s)
 		return (NULL);
 	i = 0;
-	lentab = count_words(s, c);
+	lentab = count_words(s, banned);
 	if (!(tab = (char**)malloc(sizeof(*tab) * (lentab + 1))))
 		return (NULL);
 	while (i < lentab)
 	{
-		while (*s == c)
+		while (ft_strchr(banned, *s))
 			s++;
-		if (!(tab[i] = ft_strcdup(s, c)))
+		if (!(tab[i] = ft_strcdup(s, banned)))
 		{
 			ft_tabdel((void*)tab, i);
 			return (0);
 		}
-		while (*s != c && *s)
+		while (!ft_strchr(banned, *s) && *s)
 			s++;
 		i++;
 	}

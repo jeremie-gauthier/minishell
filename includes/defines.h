@@ -6,13 +6,14 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 11:24:14 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/06 11:26:35 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/06 18:20:50 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define PATH	"PATH="
+# define PATH		"PATH="
+# define READ_SIZE	1024
 
 #endif

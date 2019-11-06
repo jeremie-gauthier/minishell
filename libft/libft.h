@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 11:39:54 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/05 12:52:58 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/06 16:19:47 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ char				*ft_strrchr(const char *s, int c);
 char				*ft_strncpy(char *dest, const char *src, size_t n);
 size_t				ft_strspn(const char *s, const char *accept);
 void				ft_bzero(void *s, size_t n);
-char				*ft_strcdup(const char *str, const char limit);
+char				*ft_strcdup(const char *str, const char *limits);
 char				*ft_arrjoin(const char **arr, const int glue);
 void				bufferize(const char *src, const size_t len);
 void				print_buffer(void);
@@ -180,7 +180,7 @@ int					ft_strnequ(char const *s1, char const *s2, size_t n);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
-char				**ft_strsplit(char const *s, char c);
+char				**ft_strsplit(char const *s, const char *banned);
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
 char				*ft_itoa(int n);
