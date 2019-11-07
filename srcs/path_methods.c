@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 11:15:28 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/07 11:15:34 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/07 20:16:07 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,27 @@
 
 int	create_path_env(char **const env, t_shell *shell)
 {
-	char	**paths;
-	t_list	*node;
 	size_t	i;
+	size_t	j;
 
 	i = 0;
 	while (ft_strncmp(env[i], PATH, 5))
 		i++;
-	if (!(paths = ft_strsplit(&env[i][5], ":")))
-		return (-1);
-	i = 0;
-	while (paths[i])
+	j = 4;
+	while (env[i][j++])
 	{
-		if (!(node = ft_lstnew_addr(paths[i])))
+		if (!(shell->path_bin[shell->path_bin_size++] = ft_strcdup(&env[i][j],
+			PATH_DELIMITER)))
+		{
+			ft_tabdel((void**)shell->path_bin, shell->path_bin_size);
+			shell->path_bin_size = 0;
+			free(shell->path_bin);
+			shell->path_bin = NULL;
 			return (-1);
-		ft_lstadd(&shell->path_env, node);
-		i++;
+		}
+		while (env[i][j] && env[i][j] != ':')
+			j++;
 	}
-	free(paths);
-	paths = NULL;
 	return (0);
 }
 
@@ -47,17 +49,15 @@ int	update_path_env(const char *pathname, t_shell *shell)
 **	Iterate through $PATH to get the directory where we can run the command.
 */
 
-char	*get_pathname(const t_list *path_env, const char *filename)
+char	*get_pathname(char **path_bin, const char *filename)
 {
-	t_list	*current;
 	char	*pathname;
 
-	current = (t_list*)path_env;
-	while (current)
+	while (*path_bin)
 	{
-		if ((pathname = access_file(current->content, filename)))
+		if ((pathname = access_file(*path_bin, filename)))
 			return (pathname);
-		current = current->next;
+		path_bin++;
 	}
 	return (NULL);
 }

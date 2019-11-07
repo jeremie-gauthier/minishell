@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 11:24:14 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/07 21:08:59 by jergauth         ###   ########.fr       */
+/*   Created: 2019/11/07 20:09:39 by jergauth          #+#    #+#             */
+/*   Updated: 2019/11/07 21:11:07 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#include "minishell.h"
 
-# define STDIN		0
-# define STDOUT		1
-# define STDERR		2
-
-# define PATH			"PATH="
-# define PATH_DELIMITER	":"
-
-# define ARR_BUFF	128
-
-# define ECHO		"echo"
-# define CD			"cd"
-# define SETENV		"setenv"
-# define UNSETENV	"unsetenv"
-# define ENV		"env"
-# define EXIT		"exit"
-
-#endif
+int		echo_builtin(const t_shell *shell, char **const env)
+{
+	// (void)shell;
+	(void)env;
+	ft_printf("ECHO %s\n", shell->argv[1]);
+	return (0);
+}

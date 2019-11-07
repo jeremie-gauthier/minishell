@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 11:39:54 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/06 16:19:47 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/07 18:46:54 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 # define OUTBUF			4096
 
-# define BUFF_SIZE	32
+# define BUFF_SIZE	256
 # define IDENTICAL	0
 # define ALL_FLAGS	"Llh+- .#0123456789,*"
 # define NB_FLAGS	20

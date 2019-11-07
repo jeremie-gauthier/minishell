@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 11:38:37 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/06 16:17:54 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/07 21:31:27 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,9 @@ char			**ft_strsplit(char const *s, const char *banned)
 	size_t	lentab;
 	char	**tab;
 
-	if (!s)
+	if (!s || (lentab = count_words(s, banned)) == 0)
 		return (NULL);
 	i = 0;
-	lentab = count_words(s, banned);
 	if (!(tab = (char**)malloc(sizeof(*tab) * (lentab + 1))))
 		return (NULL);
 	while (i < lentab)

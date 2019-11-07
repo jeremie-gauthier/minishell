@@ -6,34 +6,28 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:07:07 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/07 11:31:22 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/07 21:28:16 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// static void	del_path_env(void *content, size_t size)
-// {
-// 	(void)size;
-// 	ft_memdel(&content);
-// }
-
-static void	del_paths(t_list *lst) {
-	t_list	*tmp;
-
-	while (lst)
+static int	shell_init(t_shell *shell)
+{
+	ft_bzero((void*)&shell, sizeof(t_shell));
+	shell->nb_alloc = 1;
+	if (!(shell->path_bin = ft_memalloc(ARR_BUFF * sizeof(char*))))
 	{
-		tmp = lst;
-		lst = lst->next;
-		ft_memdel(&tmp->content);
-		ft_memdel((void*)&tmp);
-		
-		// tmp = (*lst)->next;
-		// ft_memdel(&(*lst)->content);
-		// ft_memdel((void*)&(*lst));
-		// *lst = tmp;
+		ft_dprintf(STDERR, "minishell: Error while building path\n");
+		return (-1);
 	}
-	ft_memdel((void**)lst);
+	return (0);
+}
+
+static void	shell_leave(t_shell *shell)
+{
+	ft_tabdel((void**)shell->path_bin, shell->path_bin_size);
+	ft_bzero((void*)shell, sizeof(t_shell));
 }
 
 int			main(int argc, char **argv, char **env) {
@@ -41,11 +35,14 @@ int			main(int argc, char **argv, char **env) {
 
 	(void)argc;
 	(void)argv;
-	if (create_path_env(env, &shell) < 0)
+	if (shell_init(&shell) < 0)
 		return (-1);
-	// listen_stdin(&shell, env);
-	// ft_lstdel(&shell.path_env, &del_path_env);
-	del_paths(shell.path_env);
-	// while(1);
+	if (create_path_env(env, &shell) < 0)
+	{
+		shell_leave(&shell);
+		return (-1);
+	}
+	listen_stdout(&shell, env);
+	shell_leave(&shell);
 	return (0);
 }

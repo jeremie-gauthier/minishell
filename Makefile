@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 10:03:04 by jergauth          #+#    #+#              #
-#    Updated: 2019/11/07 10:47:37 by jergauth         ###   ########.fr        #
+#    Updated: 2019/11/07 21:01:28 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,13 +24,21 @@ SRCS=	main.c\
 		core_shell.c\
 		debug.c
 
+BT_DIR=	$(SRCS_DIR)/builtins
+BT_SRCS=	get_builtin.c\
+			echo.c
+
 ## COMMON OBJS
 OBJS= $(SRCS:.c=.o)
 OBJS_DIR= $(SRCS_DIR)/$(OBJS_DIRNAME)
 OBJS_PRE= $(addprefix $(OBJS_DIR)/, $(OBJS))
 
-ALL_DIR= $(OBJS_DIR) 
-ALL_PRE= $(OBJS_PRE)
+BT_OBJS= $(BT_SRCS:.c=.o)
+BT_OBJS_DIR= $(BT_DIR)/$(OBJS_DIRNAME)
+BT_OBJS_PRE= $(addprefix $(BT_OBJS_DIR)/, $(BT_OBJS))
+
+ALL_DIR= $(OBJS_DIR) $(BT_OBJS_DIR)
+ALL_PRE= $(OBJS_PRE) $(BT_OBJS_PRE)
 
 ## LIB
 LIBFT_DIR= ./libft
@@ -71,6 +79,12 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADERS)
 $(OBJS_DIR):
 			@mkdir -p $(OBJS_DIR)
 
+$(BT_OBJS_DIR)/%.o: $(BT_DIR)/%.c $(HEADERS)
+			$(CC) -c -o $@ $< $(CFLAGS) $(INCS)
+
+$(BT_OBJS_DIR):
+			@mkdir -p $(BT_OBJS_DIR)
+
 $(NAME):	$(ALL_DIR) $(ALL_PRE) $(HEADERS) $(LIBFT_DIR) Makefile
 			$(CC) -o $(NAME) $(CFLAGS) $(ALL_PRE) $(LFLAGS)
 
@@ -78,7 +92,7 @@ LIBFT:
 		@make -C $(LIBFT_DIR)
 
 clean:	
-		rm -rf $(OBJS_DIR) $(DSYM)
+		rm -rf $(OBJS_DIR) $(BT_OBJS_DIR) $(DSYM)
 		@make -C $(LIBFT_DIR) clean
 
 fclean:	clean

@@ -6,34 +6,49 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:06:09 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/06 18:30:41 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/07 21:33:45 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		listen_stdin(t_shell *shell, char **env)
+void	free_inputs(t_shell **shell, char **input)
 {
-	char	buf[READ_SIZE];
 	size_t	len;
-	int		ret;
+
+	ft_strdel(&(*shell)->pathname);
+	len = ft_arrlen((void**)(*shell)->argv);
+	ft_tabdel((void**)(*shell)->argv, len);
+	ft_strdel(input);
+}
+
+/*
+**	The main loop of minishell, where we can send commands.
+*/
+
+int		listen_stdout(t_shell *shell, char **env)
+{
+	char		*input;
+	t_builtin	fptr;
 
 	ft_printf("{cyan}minishell$>{reset} ");
-	while ((ret = read(1, &buf, READ_SIZE)))
+	while (get_next_line(STDOUT, &input) > 0)
 	{
-		if (ret == READ_SIZE)
-			ft_dprintf(2, "argument list too long\n");
-		else
+		if ((shell->argv = ft_strsplit(input, " \t\n")))
 		{
-			buf[ret] = '\0';
-			shell->argv = ft_strsplit(buf, " \t\n");
-			len = ft_arrlen((void**)shell->argv);
-			if (!(shell->pathname = get_pathname(shell->path_env, shell->argv[0])))
-				ft_dprintf(2, "minishell: command not found: %s\n", shell->argv[0]);
-			new_process(shell, env);
-			ft_strdel(&shell->pathname);
-			ft_tabdel((void**)shell->argv, len);
+			if ((fptr = get_builtin(shell->argv[0])))
+				fptr(shell, env);
+			else if ((shell->pathname = get_pathname(shell->path_bin,
+				shell->argv[0])))
+			{
+				new_process(shell, env);
+				free_inputs(&shell, &input);
+			}
+			else
+				ft_dprintf(STDERR, "minishell: command not found: %s\n",
+					shell->argv[0]);
 		}
+		//Need input free in an else case
 		ft_printf("{cyan}minishell$>{reset} ");
 	}
 	return (0);
