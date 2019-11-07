@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 10:03:04 by jergauth          #+#    #+#              #
-#    Updated: 2019/11/07 21:01:28 by jergauth         ###   ########.fr        #
+#    Updated: 2019/11/07 22:18:31 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,9 @@ LIBFT_DIR= ./libft
 ## HEADERS
 HEADER_DIR=	includes/
 HEADER=	minishell.h\
+		defines.h\
 		types.h
+
 HEADERS= $(addprefix $(HEADER_DIR), $(HEADER))
 
 ## INCLUDES

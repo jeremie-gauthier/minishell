@@ -6,20 +6,24 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:06:09 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/07 21:33:45 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/07 22:30:50 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_inputs(t_shell **shell, char **input)
+void	free_cmds(t_shell **shell)
 {
 	size_t	len;
 
 	ft_strdel(&(*shell)->pathname);
 	len = ft_arrlen((void**)(*shell)->argv);
 	ft_tabdel((void**)(*shell)->argv, len);
-	ft_strdel(input);
+}
+
+void	throw_error(char *str)
+{
+	ft_dprintf(STDERR, "minishell: command not found: %s\n", str);
 }
 
 /*
@@ -40,16 +44,14 @@ int		listen_stdout(t_shell *shell, char **env)
 				fptr(shell, env);
 			else if ((shell->pathname = get_pathname(shell->path_bin,
 				shell->argv[0])))
-			{
 				new_process(shell, env);
-				free_inputs(&shell, &input);
-			}
 			else
-				ft_dprintf(STDERR, "minishell: command not found: %s\n",
-					shell->argv[0]);
+				throw_error(shell->argv[0]);
+			free_cmds(&shell);
 		}
-		//Need input free in an else case
+		ft_strdel(&input);
 		ft_printf("{cyan}minishell$>{reset} ");
 	}
+	ft_strdel(&input);
 	return (0);
 }

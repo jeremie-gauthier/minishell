@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:07:07 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/07 21:28:16 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/07 22:21:00 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	shell_init(t_shell *shell)
 {
-	ft_bzero((void*)&shell, sizeof(t_shell));
+	ft_bzero((void*)shell, sizeof(t_shell));
 	shell->nb_alloc = 1;
 	if (!(shell->path_bin = ft_memalloc(ARR_BUFF * sizeof(char*))))
 	{
