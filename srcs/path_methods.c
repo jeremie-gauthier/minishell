@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 11:15:28 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/06 17:20:19 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/07 11:15:34 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,16 @@ int	create_path_env(char **const env, t_shell *shell)
 		i++;
 	if (!(paths = ft_strsplit(&env[i][5], ":")))
 		return (-1);
-	while (*paths)
+	i = 0;
+	while (paths[i])
 	{
-		if (!(node = ft_lstnew_addr((void*)*paths)))
+		if (!(node = ft_lstnew_addr(paths[i])))
 			return (-1);
 		ft_lstadd(&shell->path_env, node);
-		paths++;
+		i++;
 	}
+	free(paths);
+	paths = NULL;
 	return (0);
 }
 

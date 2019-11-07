@@ -6,11 +6,12 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 10:03:04 by jergauth          #+#    #+#              #
-#    Updated: 2019/11/06 16:07:46 by jergauth         ###   ########.fr        #
+#    Updated: 2019/11/07 10:47:37 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	minishell
+UNAME	:= $(shell uname)
 
 OBJS_DIRNAME= .objs
 
@@ -46,8 +47,16 @@ LIB_INC= -I $(LIBFT_DIR)
 INCS = $(INC) $(LIB_INC)
 
 ## FLAGS
+ifeq ($(UNAME), Darwin)
 CC		=	gcc
-CFLAGS	+=	-Wall -Werror -Wextra #-O2 -fno-builtin -flto=full
+CFLAGS	+=	-Wall -Werror -Wextra -O2 -fno-builtin -flto=full
+endif
+
+ifeq ($(UNAME), Linux)
+CC		=	clang
+CFLAGS	+=	-Wall -Werror -Wextra -O2 -fno-builtin
+endif
+
 LFLAGS	+= -L $(LIBFT_DIR) -lft
 
 ## DEBUG SYMBOLS
