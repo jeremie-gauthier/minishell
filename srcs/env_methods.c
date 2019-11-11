@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   env_methods.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 11:07:01 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/08 19:47:49 by jergauth         ###   ########.fr       */
+/*   Created: 2019/11/08 18:22:09 by jergauth          #+#    #+#             */
+/*   Updated: 2019/11/08 18:47:55 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPES_H
-# define TYPES_H
+#include "minishell.h"
 
-typedef struct	s_shell
+char	*get_var_content(const char *var, char **const env)
 {
-	char	**path_bin;
-	char	**argv;
-	char	*pathname;
-	size_t	path_bin_size;
-	size_t	nb_alloc;
-}				t_shell;
+	size_t	len;
+	size_t	i;
 
-typedef int		(*t_builtin)(const t_shell*, char **const);
-
-#endif
+	len = ft_strlen(var);
+	i = 0;
+	while (env[i] && ft_strncasecmp(var, env[i], len))
+		i++;
+	if (env[i])
+		return (env[i] + len + 1);
+	return (NULL);
+}

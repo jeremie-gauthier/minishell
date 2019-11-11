@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 10:03:04 by jergauth          #+#    #+#              #
-#    Updated: 2019/11/07 22:18:31 by jergauth         ###   ########.fr        #
+#    Updated: 2019/11/08 18:22:19 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS_DIR= ./srcs
 SRCS=	main.c\
 		interpreter.c\
 		exec.c\
+		env_methods.c\
 		path_methods.c\
 		core_shell.c\
 		debug.c

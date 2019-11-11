@@ -5,5 +5,5 @@
 a.out*
 .DS_Store
 libft/*.a
-ft_ls
+minishell
 *.gch

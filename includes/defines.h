@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 11:24:14 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/07 21:08:59 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/08 19:56:46 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@
 # define UNSETENV	"unsetenv"
 # define ENV		"env"
 # define EXIT		"exit"
+
+# define EOL_COLOR	"\033[30;47m"
 
 #endif
