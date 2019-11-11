@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   ft_str_is_alnum.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 11:07:01 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/11 18:10:09 by jergauth         ###   ########.fr       */
+/*   Created: 2019/11/11 18:27:46 by jergauth          #+#    #+#             */
+/*   Updated: 2019/11/11 18:29:53 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPES_H
-# define TYPES_H
+#include "libft.h"
 
-typedef enum	e_status
+int	ft_str_is_alnum(char *str)
 {
-	STOPPED	= 0,
-	RUNNING
-}				t_status;
-
-typedef struct	s_shell
-{
-	char		**path_bin;
-	char		**argv;
-	char		*pathname;
-	size_t		path_bin_size;
-	size_t		nb_alloc_bin;
-	size_t		argc;
-	size_t		nb_alloc_env;
-	size_t		env_idx;
-	t_status	status;
-	int			env_malloced : 1;
-}				t_shell;
-
-typedef int		(*t_builtin)(t_shell*, char **const);
-
-#endif
+	while (*str)
+	{
+		if (!ft_isalnum(*str))
+			return (0);
+		str++;
+	}
+	return (1);
+}

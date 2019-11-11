@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:06:09 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/11 13:32:19 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/11 17:34:13 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	free_cmds(t_shell **shell)
 
 void	throw_error(char *str)
 {
-	ft_dprintf(STDERR, "minishell: command not found: %s\n", str);
+	ft_dprintf(STDERR, "minishell: %s: command not found\n", str);
 }
 
 /*

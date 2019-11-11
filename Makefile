@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 10:03:04 by jergauth          #+#    #+#              #
-#    Updated: 2019/11/11 13:41:27 by jergauth         ###   ########.fr        #
+#    Updated: 2019/11/11 17:42:38 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ BT_SRCS=	get_builtin.c\
 			echo.c\
 			exit.c\
 			cd.c\
-			env.c
+			env.c\
+			setenv.c
 
 ## COMMON OBJS
 OBJS= $(SRCS:.c=.o)

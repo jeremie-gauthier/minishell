@@ -184,7 +184,8 @@ SRCS	=	ft_memset.c		\
 			ft_lstadd_back.c\
 			ft_lstpop.c\
 			ft_arrjoin.c\
-			buffer.c
+			buffer.c\
+			ft_str_is_alnum.c
 
 DIR_O	=	./.objs
 

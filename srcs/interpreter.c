@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:30:53 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/07 18:49:31 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/11 18:45:46 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **	Concatenation of two strings with slahs ('/') between them.
 */
 
-static char	*glue_pathname(char const *s1, char const *s2)
+char	*glue_str(char const *s1, char const *s2, char glue)
 {
 	char	*str;
 	size_t	len_s1;
@@ -27,7 +27,7 @@ static char	*glue_pathname(char const *s1, char const *s2)
 	if (!(str = malloc((len_s1 + len_s2 + 2) * sizeof(char))))
 		return (NULL);
 	ft_memcpy((void*)str, (void*)s1, len_s1);
-	str[len_s1] = '/';
+	str[len_s1] = glue;
 	ft_memcpy((void*)&str[len_s1 + 1], (void*)s2, len_s2 + 1);
 	return (str);
 }
@@ -37,11 +37,11 @@ static char	*glue_pathname(char const *s1, char const *s2)
 **	or NULL if the filename is not found.
 */
 
-char		*access_file(const char *path, const char *filename)
+char	*access_file(const char *path, const char *filename)
 {
 	char	*pathname;
 
-	if (!(pathname = glue_pathname(path, filename)))
+	if (!(pathname = glue_str(path, filename, '/')))
 	{
 		ft_dprintf(STDERR, "minishell: malloc failed\n");
 		return (NULL);

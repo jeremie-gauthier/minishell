@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:15:25 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/06 14:13:22 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/11 17:33:56 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 int	exec(const t_shell *shell, char **const env)
 {
 	if (execve(shell->pathname, shell->argv, env) < 0)
-		ft_printf("execve error\n");
-	return (1);
+	{
+		throw_error(shell->pathname);
+		return (-1);
+	}
+	return (0);
 }
 
 /*
@@ -26,6 +29,7 @@ int	exec(const t_shell *shell, char **const env)
 int	new_process(const t_shell *shell, char **const env)
 {
 	pid_t	pid;
+	int		status;
 
 	if ((pid = fork()) < 0)
 	{
@@ -33,8 +37,11 @@ int	new_process(const t_shell *shell, char **const env)
 		return (-1);
 	}
 	if (pid == 0)
-		exec(shell, env);
+	{
+		if (exec(shell, env) < 0)
+			exit(-1);
+	}
 	else
-		wait(NULL);
+		wait(&status);
 	return (0);
 }

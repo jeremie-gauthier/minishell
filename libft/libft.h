@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 11:39:54 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/11 13:32:11 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/11 18:29:25 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,6 +275,7 @@ int					ft_islower(int c);
 int					ft_isspace(int c);
 int					ft_isupper(int c);
 int					ft_isxdigit(int c);
+int					ft_str_is_alnum(char *str);
 int					ft_str_is_alpha(const char *str);
 int					ft_str_is_lowercase(const char *str);
 int					ft_str_is_numeric(const char *str);

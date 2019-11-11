@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 20:38:25 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/11 13:41:21 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/11 18:33:37 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@ t_builtin	get_builtin(const char *cmd)
 		return (&cd_builtin);
 	if (ft_strcasecmp(cmd, ENV) == 0)
 		return (&env_builtin);
+	if (ft_strcasecmp(cmd, SETENV) == 0)
+		return (&setenv_builtin);
 	return (NULL);
 }
