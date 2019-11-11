@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 20:09:39 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/11 13:17:05 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/11 21:17:39 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*get_var(const char *str)
 	return (var);
 }
 
-static void	arg_parser(const char *str, char **const env)
+static void	arg_parser(t_shell *shell, const char *str)
 {
 	char	*ptr;
 	char	*var;
@@ -38,7 +38,7 @@ static void	arg_parser(const char *str, char **const env)
 		write(1, str, str - ptr);
 		if ((var = get_var(ptr + 1)))
 		{
-			ptr = get_var_content(var, env);
+			ptr = get_var_content(var, shell->env);
 			ft_strdel(&var);
 			if (ptr)
 				ft_printf("%s", ptr);
@@ -60,7 +60,7 @@ static size_t	echo_options(char **const argv)
 	return (ret);
 }
 
-int			echo_builtin(t_shell *shell, char **const env)
+int			echo_builtin(t_shell *shell)
 {
 	size_t	i;
 	size_t	ret;
@@ -71,7 +71,7 @@ int			echo_builtin(t_shell *shell, char **const env)
 	{
 		if (i > ret)
 			ft_printf(" ");
-		arg_parser(shell->argv[i], env);
+		arg_parser(shell, shell->argv[i]);
 		i++;
 	}
 	if (ret > 1)

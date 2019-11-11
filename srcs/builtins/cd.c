@@ -6,15 +6,14 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 13:20:06 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/11 13:36:33 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/11 21:14:26 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		cd_builtin(t_shell *shell, char **const env)
+int		cd_builtin(t_shell *shell)
 {
-	(void)env;
 	if (shell->argc > 2)
 	{
 		ft_dprintf(2, "minishell: cd: too many arguments\n");

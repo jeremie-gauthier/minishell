@@ -6,13 +6,13 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 17:42:18 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/11 18:47:35 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/11 21:15:15 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int			setenv_builtin(t_shell *shell, char **const env)
+int			setenv_builtin(t_shell *shell)
 {
 	if (shell->argc != 3)
 	{
@@ -30,7 +30,7 @@ int			setenv_builtin(t_shell *shell, char **const env)
 			"minishell: setenv: key must contains alphanumeric characters\n");
 		return (-1);
 	}
-	if (add_entry_env(shell, env, shell->argv[1], shell->argv[2]) < 0)
+	if (add_entry_env(shell, shell->argv[1], shell->argv[2]) < 0)
 	{
 		ft_dprintf(STDERR, "minishell: setenv: failed to insert new entry\n");
 		return (-1);

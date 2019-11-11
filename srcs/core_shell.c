@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:06:09 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/11 17:34:13 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/11 22:32:06 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	throw_error(char *str)
 **	The main loop of minishell, where we can send commands.
 */
 
-int		listen_stdout(t_shell *shell, char **env)
+int		listen_stdout(t_shell *shell)
 {
 	char		*input;
 	t_builtin	fptr;
@@ -41,10 +41,10 @@ int		listen_stdout(t_shell *shell, char **env)
 		if ((shell->argv = ft_strsplit(input, " \t\n", &shell->argc)))
 		{
 			if ((fptr = get_builtin(shell->argv[0])))
-				fptr(shell, env);
+				fptr(shell);
 			else if ((shell->pathname = get_pathname(shell->path_bin,
 				shell->argv[0])))
-				new_process(shell, env);
+				new_process(shell, shell->env);
 			else
 				throw_error(shell->argv[0]);
 			free_cmds(&shell);

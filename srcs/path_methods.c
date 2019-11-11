@@ -6,13 +6,25 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 11:15:28 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/07 20:16:07 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/11 22:25:21 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	create_path_env(char **const env, t_shell *shell)
+void	free_path(char *path_bin[ARR_BUFF])
+{
+	size_t	i;
+
+	i = 0;
+	while (path_bin[i])
+	{
+		ft_strdel(&path_bin[i]);
+		i++;
+	}
+}
+
+int	create_path_env(char *env[ARR_BUFF], t_shell *shell)
 {
 	size_t	i;
 	size_t	j;
@@ -21,27 +33,31 @@ int	create_path_env(char **const env, t_shell *shell)
 	while (ft_strncmp(env[i], PATH, 5))
 		i++;
 	j = 4;
-	while (env[i][j++])
+	while (env[i][j++] && shell->path_bin_size < ARR_BUFF)
 	{
 		if (!(shell->path_bin[shell->path_bin_size++] = ft_strcdup(&env[i][j],
 			PATH_DELIMITER)))
 		{
 			ft_tabdel((void**)shell->path_bin, shell->path_bin_size);
 			shell->path_bin_size = 0;
-			free(shell->path_bin);
-			shell->path_bin = NULL;
 			return (-1);
 		}
 		while (env[i][j] && env[i][j] != ':')
 			j++;
 	}
+	// shell->path_bin[shell->path_bin_size] = NULL;
 	return (0);
 }
 
-int	update_path_env(const char *pathname, t_shell *shell)
+int	update_path_env(char *env[ARR_BUFF], t_shell *shell)
 {
-	(void)pathname;
-	(void)shell;
+	free_path(shell->path_bin);
+	shell->path_bin_size = 0;
+	if ((create_path_env(env, shell)) < 0)
+	{
+		ft_dprintf(STDERR, "minishell: fail to update env\n");
+		return (-1);
+	}
 	return (0);
 }
 
