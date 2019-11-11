@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 10:03:04 by jergauth          #+#    #+#              #
-#    Updated: 2019/11/08 18:22:19 by jergauth         ###   ########.fr        #
+#    Updated: 2019/11/11 13:41:27 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,10 @@ SRCS=	main.c\
 
 BT_DIR=	$(SRCS_DIR)/builtins
 BT_SRCS=	get_builtin.c\
-			echo.c
+			echo.c\
+			exit.c\
+			cd.c\
+			env.c
 
 ## COMMON OBJS
 OBJS= $(SRCS:.c=.o)
@@ -60,12 +63,12 @@ INCS = $(INC) $(LIB_INC)
 ## FLAGS
 ifeq ($(UNAME), Darwin)
 CC		=	gcc
-CFLAGS	+=	-Wall -Werror -Wextra -O2 -fno-builtin -flto=full
+CFLAGS	+=	-Wall -Werror -Wextra# -O2 -fno-builtin -flto=full
 endif
 
 ifeq ($(UNAME), Linux)
 CC		=	clang
-CFLAGS	+=	-Wall -Werror -Wextra -O2 -fno-builtin
+CFLAGS	+=	-Wall -Werror -Wextra# -O2 -fno-builtin
 endif
 
 LFLAGS	+= -L $(LIBFT_DIR) -lft

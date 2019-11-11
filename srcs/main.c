@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:07:07 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/07 22:21:00 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/11 13:11:11 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static int	shell_init(t_shell *shell)
 		ft_dprintf(STDERR, "minishell: Error while building path\n");
 		return (-1);
 	}
+	shell->status = RUNNING;
 	return (0);
 }
 

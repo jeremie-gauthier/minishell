@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 11:07:01 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/11 13:30:49 by jergauth         ###   ########.fr       */
+/*   Created: 2019/11/11 13:20:06 by jergauth          #+#    #+#             */
+/*   Updated: 2019/11/11 13:36:33 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPES_H
-# define TYPES_H
+#include "minishell.h"
 
-typedef enum	e_status
+int		cd_builtin(t_shell *shell, char **const env)
 {
-	STOPPED	= 0,
-	RUNNING
-}				t_status;
-
-typedef struct	s_shell
-{
-	char		**path_bin;
-	char		**argv;
-	char		*pathname;
-	size_t		path_bin_size;
-	size_t		nb_alloc;
-	size_t		argc;
-	t_status	status;
-}				t_shell;
-
-typedef int		(*t_builtin)(t_shell*, char **const);
-
-#endif
+	(void)env;
+	if (shell->argc > 2)
+	{
+		ft_dprintf(2, "minishell: cd: too many arguments\n");
+		return (-1);
+	}
+	if (chdir(shell->argv[1]) < 0)
+	{
+		ft_dprintf(2, "minishell: cd: %s: No such file or directory\n",
+			shell->argv[1]);
+		return (-1);
+	}
+	return (0);
+}

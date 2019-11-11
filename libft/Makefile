@@ -192,12 +192,12 @@ OBJS	=	$(addprefix $(DIR_O)/,$(SRCS:.c=.o))
 
 ifeq ($(UNAME), Darwin)
 CC		=	gcc
-CFLAGS	+=	-Wall -Werror -Wextra -O2 -fno-builtin -flto=full
+CFLAGS	+=	-Wall -Werror -Wextra# -O2 -fno-builtin -flto=full
 endif
 
 ifeq ($(UNAME), Linux)
 CC		=	clang
-CFLAGS	+=	-Wall -Werror -Wextra -O2 -fno-builtin
+CFLAGS	+=	-Wall -Werror -Wextra# -O2 -fno-builtin
 endif
 
 LIB		=	libft.h

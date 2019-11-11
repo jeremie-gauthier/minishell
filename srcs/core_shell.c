@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:06:09 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/07 22:30:50 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/11 13:32:19 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int		listen_stdout(t_shell *shell, char **env)
 	t_builtin	fptr;
 
 	ft_printf("{cyan}minishell$>{reset} ");
-	while (get_next_line(STDOUT, &input) > 0)
+	while (shell->status == RUNNING && get_next_line(STDOUT, &input) > 0)
 	{
-		if ((shell->argv = ft_strsplit(input, " \t\n")))
+		if ((shell->argv = ft_strsplit(input, " \t\n", &shell->argc)))
 		{
 			if ((fptr = get_builtin(shell->argv[0])))
 				fptr(shell, env);
@@ -50,7 +50,8 @@ int		listen_stdout(t_shell *shell, char **env)
 			free_cmds(&shell);
 		}
 		ft_strdel(&input);
-		ft_printf("{cyan}minishell$>{reset} ");
+		if (shell->status == RUNNING)
+			ft_printf("{cyan}minishell$>{reset} ");
 	}
 	ft_strdel(&input);
 	return (0);

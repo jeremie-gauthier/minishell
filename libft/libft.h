@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 11:39:54 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/07 18:46:54 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/11 13:32:11 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,8 @@ int					ft_strnequ(char const *s1, char const *s2, size_t n);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
-char				**ft_strsplit(char const *s, const char *banned);
+char				**ft_strsplit(char const *s, const char *banned,
+						size_t *len);
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
 char				*ft_itoa(int n);

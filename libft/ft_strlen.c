@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 11:35:52 by jergauth          #+#    #+#             */
-/*   Updated: 2019/08/27 18:24:36 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/11 13:12:39 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,10 @@
 
 size_t	ft_strlen(const char *str)
 {
-	register size_t			len;
-	register unsigned int	uptr;
+	register size_t	len;
 
 	len = 0;
-	while (1)
-	{
-		uptr = *(unsigned int*)str;
-		if ((uptr & 0XFF) == 0)
-			return (len);
-		if ((uptr & 0XFF00) == 0)
-			return (len + 1);
-		if ((uptr & 0XFF0000) == 0)
-			return (len + 2);
-		if ((uptr & 0XFF000000) == 0)
-			return (len + 3);
-		str += 4;
-		len += 4;
-	}
+	while (str[len])
+		len++;
+	return (len);
 }
