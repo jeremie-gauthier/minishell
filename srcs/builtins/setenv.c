@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 17:42:18 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/11 21:15:15 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/12 11:12:59 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int			setenv_builtin(t_shell *shell)
 {
-	if (shell->argc != 3)
+	if (shell->argc != 2 && shell->argc != 3)
 	{
 		ft_dprintf(STDERR, "minishell: setenv: Wrong number of arguments\n");
 		return (-1);

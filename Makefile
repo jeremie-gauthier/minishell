@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 10:03:04 by jergauth          #+#    #+#              #
-#    Updated: 2019/11/11 17:42:38 by jergauth         ###   ########.fr        #
+#    Updated: 2019/11/12 11:45:33 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ SRCS_DIR= ./srcs
 SRCS=	main.c\
 		interpreter.c\
 		exec.c\
-		env_methods.c\
 		path_methods.c\
 		core_shell.c\
 		debug.c
@@ -31,7 +30,16 @@ BT_SRCS=	get_builtin.c\
 			exit.c\
 			cd.c\
 			env.c\
-			setenv.c
+			setenv.c\
+			unsetenv.c
+
+ENV_DIR= $(SRCS_DIR)/env_methods
+ENV_SRCS=	get_var.c\
+			add_var.c\
+			create_env.c\
+			del_var.c\
+			free_env.c\
+			update_var.c
 
 ## COMMON OBJS
 OBJS= $(SRCS:.c=.o)
@@ -42,8 +50,12 @@ BT_OBJS= $(BT_SRCS:.c=.o)
 BT_OBJS_DIR= $(BT_DIR)/$(OBJS_DIRNAME)
 BT_OBJS_PRE= $(addprefix $(BT_OBJS_DIR)/, $(BT_OBJS))
 
-ALL_DIR= $(OBJS_DIR) $(BT_OBJS_DIR)
-ALL_PRE= $(OBJS_PRE) $(BT_OBJS_PRE)
+ENV_OBJS= $(ENV_SRCS:.c=.o)
+ENV_OBJS_DIR= $(ENV_DIR)/$(OBJS_DIRNAME)
+ENV_OBJS_PRE= $(addprefix $(ENV_OBJS_DIR)/, $(ENV_OBJS))
+
+ALL_DIR= $(OBJS_DIR) $(BT_OBJS_DIR) $(ENV_OBJS_DIR)
+ALL_PRE= $(OBJS_PRE) $(BT_OBJS_PRE) $(ENV_OBJS_PRE)
 
 ## LIB
 LIBFT_DIR= ./libft
@@ -92,6 +104,12 @@ $(BT_OBJS_DIR)/%.o: $(BT_DIR)/%.c $(HEADERS)
 $(BT_OBJS_DIR):
 			@mkdir -p $(BT_OBJS_DIR)
 
+$(ENV_OBJS_DIR)/%.o: $(ENV_DIR)/%.c $(HEADERS)
+			$(CC) -c -o $@ $< $(CFLAGS) $(INCS)
+
+$(ENV_OBJS_DIR):
+			@mkdir -p $(ENV_OBJS_DIR)
+
 $(NAME):	$(ALL_DIR) $(ALL_PRE) $(HEADERS) $(LIBFT_DIR) Makefile
 			$(CC) -o $(NAME) $(CFLAGS) $(ALL_PRE) $(LFLAGS)
 
@@ -99,7 +117,7 @@ LIBFT:
 		@make -C $(LIBFT_DIR)
 
 clean:	
-		rm -rf $(OBJS_DIR) $(BT_OBJS_DIR) $(DSYM)
+		rm -rf $(OBJS_DIR) $(BT_OBJS_DIR) $(ENV_OBJS_DIR) $(DSYM)
 		@make -C $(LIBFT_DIR) clean
 
 fclean:	clean

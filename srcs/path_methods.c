@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 11:15:28 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/11 22:25:21 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/12 11:45:29 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	create_path_env(char *env[ARR_BUFF], t_shell *shell)
 		while (env[i][j] && env[i][j] != ':')
 			j++;
 	}
-	// shell->path_bin[shell->path_bin_size] = NULL;
 	return (0);
 }
 

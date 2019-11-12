@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_builtin.c                                      :+:      :+:    :+:   */
+/*   create_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/07 20:38:25 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/12 11:22:31 by jergauth         ###   ########.fr       */
+/*   Created: 2019/11/12 11:43:11 by jergauth          #+#    #+#             */
+/*   Updated: 2019/11/12 11:43:35 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_builtin	get_builtin(const char *cmd)
+int		create_env(t_shell *shell, char **const env)
 {
-	if (ft_strcasecmp(cmd, ECHO) == 0)
-		return (&echo_builtin);
-	if (ft_strcasecmp(cmd, EXIT) == 0)
-		return (&exit_builtin);
-	if (ft_strcasecmp(cmd, CD) == 0)
-		return (&cd_builtin);
-	if (ft_strcasecmp(cmd, ENV) == 0)
-		return (&env_builtin);
-	if (ft_strcasecmp(cmd, SETENV) == 0)
-		return (&setenv_builtin);
-	if (ft_strcasecmp(cmd, UNSETENV) == 0)
-		return (&unsetenv_builtin);
-	return (NULL);
+	size_t	i;
+
+	i = 0;
+	while (env[i])
+	{
+		if (!(shell->env[i] = ft_strdup(env[i])))
+		{
+			shell->env_idx = i;
+			free_env(shell->env, shell->env_idx);
+			return (-1);
+		}
+		i++;
+	}
+	shell->env_idx = i;
+	return (0);
 }

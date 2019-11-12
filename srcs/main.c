@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:07:07 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/11 22:29:50 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/12 11:43:48 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	shell_leave(t_shell *shell)
 static int	shell_init(t_shell *shell, char **env)
 {
 	ft_bzero((void*)shell, sizeof(t_shell));
-	if ((recreate_env(shell, env)) < 0)
+	if ((create_env(shell, env)) < 0)
 	{
 		ft_dprintf(STDERR, "minishell: Error while building env\n");
 		return (-1);
