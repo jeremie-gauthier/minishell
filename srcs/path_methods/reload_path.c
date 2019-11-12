@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   del_var.c                                          :+:      :+:    :+:   */
+/*   reload_path.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 11:41:57 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/12 22:31:02 by jergauth         ###   ########.fr       */
+/*   Created: 2019/11/12 22:23:24 by jergauth          #+#    #+#             */
+/*   Updated: 2019/11/12 22:31:28 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	del_entry_env(t_shell *shell, const char *var)
+int	reload_path(char *env[ARR_BUFF], t_shell *shell)
 {
-	size_t	idx;
-
-	idx = get_var_idx(var, shell->env);
-	if (idx != 0xDEADBABE)
+	free_path(shell->path_bin);
+	shell->path_bin_size = 0;
+	if ((create_path(env, shell)) < 0)
 	{
-		ft_strdel(&shell->env[idx]);
-		while (shell->env[idx + 1])
-		{
-			shell->env[idx] = shell->env[idx + 1];
-			idx++;
-		}
-		shell->env[idx] = NULL;
-		if (ft_strequ(var, "PATH"))
-			reload_path(shell->env, shell);
+		ft_dprintf(STDERR, "minishell: fail to update env\n");
+		return (-1);
 	}
+	return (0);
 }

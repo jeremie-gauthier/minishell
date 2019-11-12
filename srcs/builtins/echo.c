@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 20:09:39 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/11 21:17:39 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/12 23:08:36 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ static void	arg_parser(t_shell *shell, const char *str)
 	char	*ptr;
 	char	*var;
 
-	var = NULL;
 	if ((ptr = ft_strchr(str, '$')))
 	{
-		write(1, str, str - ptr);
 		if ((var = get_var(ptr + 1)))
 		{
 			ptr = get_var_content(var, shell->env);
@@ -74,8 +72,9 @@ int			echo_builtin(t_shell *shell)
 		arg_parser(shell, shell->argv[i]);
 		i++;
 	}
-	if (ret > 1)
-		ft_printf("%s%%{reset}", EOL_COLOR);
-	ft_printf("\n");
+	if (ret > 1 && i > ret)
+		ft_printf("%s%%{reset}\n", EOL_COLOR);
+	else if (ret == 1)
+		ft_printf("\n");
 	return (0);
 }

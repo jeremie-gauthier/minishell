@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_methods.c                                     :+:      :+:    :+:   */
+/*   create_path.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 11:15:28 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/12 11:45:29 by jergauth         ###   ########.fr       */
+/*   Created: 2019/11/12 22:22:24 by jergauth          #+#    #+#             */
+/*   Updated: 2019/11/12 22:34:00 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_path(char *path_bin[ARR_BUFF])
-{
-	size_t	i;
-
-	i = 0;
-	while (path_bin[i])
-	{
-		ft_strdel(&path_bin[i]);
-		i++;
-	}
-}
-
-int	create_path_env(char *env[ARR_BUFF], t_shell *shell)
+int		create_path(char *env[ARR_BUFF], t_shell *shell)
 {
 	size_t	i;
 	size_t	j;
@@ -46,33 +34,4 @@ int	create_path_env(char *env[ARR_BUFF], t_shell *shell)
 			j++;
 	}
 	return (0);
-}
-
-int	update_path_env(char *env[ARR_BUFF], t_shell *shell)
-{
-	free_path(shell->path_bin);
-	shell->path_bin_size = 0;
-	if ((create_path_env(env, shell)) < 0)
-	{
-		ft_dprintf(STDERR, "minishell: fail to update env\n");
-		return (-1);
-	}
-	return (0);
-}
-
-/*
-**	Iterate through $PATH to get the directory where we can run the command.
-*/
-
-char	*get_pathname(char **path_bin, const char *filename)
-{
-	char	*pathname;
-
-	while (*path_bin)
-	{
-		if ((pathname = access_file(*path_bin, filename)))
-			return (pathname);
-		path_bin++;
-	}
-	return (NULL);
 }

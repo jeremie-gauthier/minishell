@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 10:03:04 by jergauth          #+#    #+#              #
-#    Updated: 2019/11/12 11:45:33 by jergauth         ###   ########.fr        #
+#    Updated: 2019/11/13 00:07:56 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ SRCS_DIR= ./srcs
 SRCS=	main.c\
 		interpreter.c\
 		exec.c\
-		path_methods.c\
 		core_shell.c\
 		debug.c
 
@@ -35,11 +34,16 @@ BT_SRCS=	get_builtin.c\
 
 ENV_DIR= $(SRCS_DIR)/env_methods
 ENV_SRCS=	get_var.c\
-			add_var.c\
+			upsert_var.c\
 			create_env.c\
 			del_var.c\
-			free_env.c\
-			update_var.c
+			free_env.c
+
+PATH_DIR= $(SRCS_DIR)/path_methods
+PATH_SRCS=	create_path.c\
+			free_path.c\
+			get_path.c\
+			reload_path.c
 
 ## COMMON OBJS
 OBJS= $(SRCS:.c=.o)
@@ -54,8 +58,12 @@ ENV_OBJS= $(ENV_SRCS:.c=.o)
 ENV_OBJS_DIR= $(ENV_DIR)/$(OBJS_DIRNAME)
 ENV_OBJS_PRE= $(addprefix $(ENV_OBJS_DIR)/, $(ENV_OBJS))
 
-ALL_DIR= $(OBJS_DIR) $(BT_OBJS_DIR) $(ENV_OBJS_DIR)
-ALL_PRE= $(OBJS_PRE) $(BT_OBJS_PRE) $(ENV_OBJS_PRE)
+PATH_OBJS= $(PATH_SRCS:.c=.o)
+PATH_OBJS_DIR= $(PATH_DIR)/$(OBJS_DIRNAME)
+PATH_OBJS_PRE= $(addprefix $(PATH_OBJS_DIR)/, $(PATH_OBJS))
+
+ALL_DIR= $(OBJS_DIR) $(BT_OBJS_DIR) $(ENV_OBJS_DIR) $(PATH_OBJS_DIR)
+ALL_PRE= $(OBJS_PRE) $(BT_OBJS_PRE) $(ENV_OBJS_PRE) $(PATH_OBJS_PRE)
 
 ## LIB
 LIBFT_DIR= ./libft
@@ -110,6 +118,12 @@ $(ENV_OBJS_DIR)/%.o: $(ENV_DIR)/%.c $(HEADERS)
 $(ENV_OBJS_DIR):
 			@mkdir -p $(ENV_OBJS_DIR)
 
+$(PATH_OBJS_DIR)/%.o: $(PATH_DIR)/%.c $(HEADERS)
+			$(CC) -c -o $@ $< $(CFLAGS) $(INCS)
+
+$(PATH_OBJS_DIR):
+			@mkdir -p $(PATH_OBJS_DIR)
+
 $(NAME):	$(ALL_DIR) $(ALL_PRE) $(HEADERS) $(LIBFT_DIR) Makefile
 			$(CC) -o $(NAME) $(CFLAGS) $(ALL_PRE) $(LFLAGS)
 
@@ -117,7 +131,7 @@ LIBFT:
 		@make -C $(LIBFT_DIR)
 
 clean:	
-		rm -rf $(OBJS_DIR) $(BT_OBJS_DIR) $(ENV_OBJS_DIR) $(DSYM)
+		rm -rf $(ALL_DIR) $(DSYM)
 		@make -C $(LIBFT_DIR) clean
 
 fclean:	clean

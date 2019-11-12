@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:39:05 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/12 11:39:42 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/12 22:45:25 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_var_content(const char *var, char *env[ARR_BUFF])
 	size_t	len;
 
 	idx = get_var_idx(var, env);
-	if (idx < 0)
+	if (idx == 0xDEADBABE)
 		return (NULL);
 	len = ft_strlen(var);
 	return (env[idx] + len + 1);

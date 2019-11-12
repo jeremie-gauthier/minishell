@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 17:42:18 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/12 11:12:59 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/12 22:18:23 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			setenv_builtin(t_shell *shell)
 			"minishell: setenv: key must contains alphanumeric characters\n");
 		return (-1);
 	}
-	if (add_entry_env(shell, shell->argv[1], shell->argv[2]) < 0)
+	if (upsert_env(shell, shell->argv[1], shell->argv[2]) < 0)
 	{
 		ft_dprintf(STDERR, "minishell: setenv: failed to insert new entry\n");
 		return (-1);

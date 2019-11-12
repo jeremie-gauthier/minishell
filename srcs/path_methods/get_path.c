@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   del_var.c                                          :+:      :+:    :+:   */
+/*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 11:41:57 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/12 22:31:02 by jergauth         ###   ########.fr       */
+/*   Created: 2019/11/12 22:24:24 by jergauth          #+#    #+#             */
+/*   Updated: 2019/11/12 22:24:52 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	del_entry_env(t_shell *shell, const char *var)
-{
-	size_t	idx;
+/*
+**	Iterate through $PATH to get the directory where we can run the command.
+*/
 
-	idx = get_var_idx(var, shell->env);
-	if (idx != 0xDEADBABE)
+char	*get_path(char **path_bin, const char *filename)
+{
+	char	*pathname;
+
+	while (*path_bin)
 	{
-		ft_strdel(&shell->env[idx]);
-		while (shell->env[idx + 1])
-		{
-			shell->env[idx] = shell->env[idx + 1];
-			idx++;
-		}
-		shell->env[idx] = NULL;
-		if (ft_strequ(var, "PATH"))
-			reload_path(shell->env, shell);
+		if ((pathname = access_file(*path_bin, filename)))
+			return (pathname);
+		path_bin++;
 	}
+	return (NULL);
 }
