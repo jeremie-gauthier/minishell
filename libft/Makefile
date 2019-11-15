@@ -185,7 +185,9 @@ SRCS	=	ft_memset.c		\
 			ft_lstpop.c\
 			ft_arrjoin.c\
 			buffer.c\
-			ft_str_is_alnum.c
+			ft_str_is_alnum.c\
+			replace_substr.c\
+			glue_str.c
 
 DIR_O	=	./.objs
 
@@ -198,7 +200,7 @@ endif
 
 ifeq ($(UNAME), Linux)
 CC		=	clang
-CFLAGS	+=	-Wall -Werror -Wextra# -O2 -fno-builtin
+CFLAGS	+=	-Wall -Werror -Wextra -g3# -O2 -fno-builtin
 endif
 
 LIB		=	libft.h

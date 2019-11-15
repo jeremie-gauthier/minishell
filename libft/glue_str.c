@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   interpreter.c                                      :+:      :+:    :+:   */
+/*   glue_str.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 10:30:53 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/15 00:35:59 by jergauth         ###   ########.fr       */
+/*   Created: 2019/11/15 00:36:15 by jergauth          #+#    #+#             */
+/*   Updated: 2019/11/15 00:36:23 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
 /*
-**	Returns a malloc'ed string corresponding to the file pathname
-**	or NULL if the filename is not found.
+**	Concatenation of two strings with slahs ('/') between them.
 */
 
-char	*access_file(const char *path, const char *filename)
+char	*glue_str(char const *s1, char const *s2, char glue)
 {
-	char	*pathname;
+	char	*str;
+	size_t	len_s1;
+	size_t	len_s2;
 
-	if (!(pathname = glue_str(path, filename, '/')))
-	{
-		ft_dprintf(STDERR, "minishell: malloc failed\n");
+	len_s1 = ft_strlen(s1);
+	len_s2 = ft_strlen(s2);
+	if (!(str = malloc((len_s1 + len_s2 + 2) * sizeof(char))))
 		return (NULL);
-	}
-	if (access(pathname, F_OK | X_OK) < 0)
-	{
-		ft_strdel(&pathname);
-		return (NULL);
-	}
-	return (pathname);
+	ft_memcpy((void*)str, (void*)s1, len_s1);
+	str[len_s1] = glue;
+	ft_memcpy((void*)&str[len_s1 + 1], (void*)s2, len_s2 + 1);
+	return (str);
 }

@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 10:03:04 by jergauth          #+#    #+#              #
-#    Updated: 2019/11/13 00:07:56 by jergauth         ###   ########.fr        #
+#    Updated: 2019/11/14 00:10:15 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,11 @@ PATH_SRCS=	create_path.c\
 			get_path.c\
 			reload_path.c
 
+EXP_DIR= $(SRCS_DIR)/expansions
+EXP_SRCS=	exp_parser.c\
+			exp_tilde.c\
+			exp_parameter.c
+
 ## COMMON OBJS
 OBJS= $(SRCS:.c=.o)
 OBJS_DIR= $(SRCS_DIR)/$(OBJS_DIRNAME)
@@ -62,8 +67,12 @@ PATH_OBJS= $(PATH_SRCS:.c=.o)
 PATH_OBJS_DIR= $(PATH_DIR)/$(OBJS_DIRNAME)
 PATH_OBJS_PRE= $(addprefix $(PATH_OBJS_DIR)/, $(PATH_OBJS))
 
-ALL_DIR= $(OBJS_DIR) $(BT_OBJS_DIR) $(ENV_OBJS_DIR) $(PATH_OBJS_DIR)
-ALL_PRE= $(OBJS_PRE) $(BT_OBJS_PRE) $(ENV_OBJS_PRE) $(PATH_OBJS_PRE)
+EXP_OBJS= $(EXP_SRCS:.c=.o)
+EXP_OBJS_DIR= $(EXP_DIR)/$(OBJS_DIRNAME)
+EXP_OBJS_PRE= $(addprefix $(EXP_OBJS_DIR)/, $(EXP_OBJS))
+
+ALL_DIR= $(OBJS_DIR) $(BT_OBJS_DIR) $(ENV_OBJS_DIR) $(PATH_OBJS_DIR) $(EXP_OBJS_DIR)
+ALL_PRE= $(OBJS_PRE) $(BT_OBJS_PRE) $(ENV_OBJS_PRE) $(PATH_OBJS_PRE) $(EXP_OBJS_PRE)
 
 ## LIB
 LIBFT_DIR= ./libft
@@ -89,7 +98,7 @@ endif
 
 ifeq ($(UNAME), Linux)
 CC		=	clang
-CFLAGS	+=	-Wall -Werror -Wextra# -O2 -fno-builtin
+CFLAGS	+=	-Wall -Werror -Wextra -g3 # -O2 -fno-builtin
 endif
 
 LFLAGS	+= -L $(LIBFT_DIR) -lft
@@ -123,6 +132,12 @@ $(PATH_OBJS_DIR)/%.o: $(PATH_DIR)/%.c $(HEADERS)
 
 $(PATH_OBJS_DIR):
 			@mkdir -p $(PATH_OBJS_DIR)
+
+$(EXP_OBJS_DIR)/%.o: $(EXP_DIR)/%.c $(HEADERS)
+			$(CC) -c -o $@ $< $(CFLAGS) $(INCS)
+
+$(EXP_OBJS_DIR):
+			@mkdir -p $(EXP_OBJS_DIR)
 
 $(NAME):	$(ALL_DIR) $(ALL_PRE) $(HEADERS) $(LIBFT_DIR) Makefile
 			$(CC) -o $(NAME) $(CFLAGS) $(ALL_PRE) $(LFLAGS)

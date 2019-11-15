@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 11:39:54 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/11 18:29:25 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/15 00:36:48 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,9 @@ size_t				ft_strspn(const char *s, const char *accept);
 void				ft_bzero(void *s, size_t n);
 char				*ft_strcdup(const char *str, const char *limits);
 char				*ft_arrjoin(const char **arr, const int glue);
+char				*replace_substr(const char *str, const char *substr,
+						const char *replacement);
+char				*glue_str(char const *s1, char const *s2, char glue);
 void				bufferize(const char *src, const size_t len);
 void				print_buffer(void);
 

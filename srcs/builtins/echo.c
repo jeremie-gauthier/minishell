@@ -6,47 +6,11 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 20:09:39 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/12 23:08:36 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/13 22:39:03 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static char	*get_var(const char *str)
-{
-	char	*var;
-	char	*ptr;
-
-	var = NULL;
-	ptr = (char*)str;
-	while (*ptr && ft_isalnum(*ptr))
-		ptr++;
-	if (ptr - str)
-		if (!(var = ft_strndup(str, ptr - str + 1)))
-			return (NULL);
-	return (var);
-}
-
-static void	arg_parser(t_shell *shell, const char *str)
-{
-	char	*ptr;
-	char	*var;
-
-	if ((ptr = ft_strchr(str, '$')))
-	{
-		if ((var = get_var(ptr + 1)))
-		{
-			ptr = get_var_content(var, shell->env);
-			ft_strdel(&var);
-			if (ptr)
-				ft_printf("%s", ptr);
-		}
-		else
-			ft_printf("$");
-	}
-	else
-		ft_printf("%s", str);
-}
 
 static size_t	echo_options(char **const argv)
 {
@@ -65,11 +29,13 @@ int			echo_builtin(t_shell *shell)
 
 	ret = echo_options(shell->argv);
 	i = ret;
+	if (exp_parser(shell) < 0)
+		return (-1);
 	while (shell->argv[i])
 	{
 		if (i > ret)
 			ft_printf(" ");
-		arg_parser(shell, shell->argv[i]);
+		ft_printf("%s", shell->argv[i]);
 		i++;
 	}
 	if (ret > 1 && i > ret)
