@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 10:03:04 by jergauth          #+#    #+#              #
-#    Updated: 2019/11/14 00:10:15 by jergauth         ###   ########.fr        #
+#    Updated: 2019/11/15 12:08:55 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,7 @@ HEADERS= $(addprefix $(HEADER_DIR), $(HEADER))
 
 ## INCLUDES
 INC= -I ./$(HEADER_DIR)
-LIB_INC= -I $(LIBFT_DIR)
+LIB_INC= -I $(addprefix $(LIBFT_DIR)/, $(HEADER_DIR))
 INCS = $(INC) $(LIB_INC)
 
 ## FLAGS
