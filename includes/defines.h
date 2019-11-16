@@ -6,19 +6,18 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 11:24:14 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/15 00:51:18 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/16 19:43:57 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define STDIN		0
-# define STDOUT		1
-# define STDERR		2
-
 # define PATH			"PATH="
 # define PATH_DELIMITER	":"
+
+# define PROMPT_COLOR	"\033[1;36m"
+
 
 # define ARR_BUFF	128
 

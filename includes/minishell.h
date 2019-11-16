@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:02:55 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/13 22:53:29 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/16 16:00:33 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char		*glue_str(char const *s1, char const *s2, char glue);
 
 int			exp_parameter(t_shell *shell, char **str);
 int			exp_parser(t_shell *shell);
-int			exp_tilde(t_shell *shell, char *str);
+int			exp_tilde(t_shell *shell, char **str);
 
 /*
 **	ENV METHODS

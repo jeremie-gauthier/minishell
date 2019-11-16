@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:40:59 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/12 22:31:10 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/16 15:47:07 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	insert_env(t_shell *shell, char *key, char *value)
 {
 	if (shell->env_idx >= ARR_BUFF - 1)
 	{
-		ft_dprintf(STDERR, "minishell: setenv: no space left on env\n");
+		ft_dprintf(STDERR_FILENO,"minishell: setenv: no space left on env\n");
 		return (-1);
 	}
 	if (!(shell->env[shell->env_idx++] = glue_str(key, value, '=')))

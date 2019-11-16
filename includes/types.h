@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 11:07:01 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/11 22:24:34 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/16 20:12:25 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,20 @@ typedef enum	e_status
 	RUNNING
 }				t_status;
 
+typedef struct	s_vars
+{
+	char	*home;
+	char	*path;	//unused
+}				t_vars;
+
 typedef struct	s_shell
 {
 	char		*path_bin[ARR_BUFF];
 	char		*env[ARR_BUFF];
+	t_vars		vars;
 	char		**argv;
 	char		*pathname;
 	size_t		path_bin_size;
-	// size_t		nb_alloc_bin;
 	size_t		argc;
 	size_t		env_idx;
 	t_status	status;

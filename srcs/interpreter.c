@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:30:53 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/15 00:35:59 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/16 15:47:07 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*access_file(const char *path, const char *filename)
 
 	if (!(pathname = glue_str(path, filename, '/')))
 	{
-		ft_dprintf(STDERR, "minishell: malloc failed\n");
+		ft_dprintf(STDERR_FILENO,"minishell: malloc failed\n");
 		return (NULL);
 	}
 	if (access(pathname, F_OK | X_OK) < 0)

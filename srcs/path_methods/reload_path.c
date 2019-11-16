@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 22:23:24 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/12 22:31:28 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/16 15:47:07 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	reload_path(char *env[ARR_BUFF], t_shell *shell)
 	shell->path_bin_size = 0;
 	if ((create_path(env, shell)) < 0)
 	{
-		ft_dprintf(STDERR, "minishell: fail to update env\n");
+		ft_dprintf(STDERR_FILENO,"minishell: fail to update env\n");
 		return (-1);
 	}
 	return (0);

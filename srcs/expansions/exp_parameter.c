@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 19:51:37 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/15 00:59:27 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/16 20:32:03 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	var_replacing(t_shell *shell, char **str, char *param)
 	// ft_printf("{RED}%s{RESET}\n", var);
 	if (!(content = get_var_content(var + 1, shell->env)))
 	{
-		ft_dprintf(STDERR, "minishell: %s: undefined variable\n", var + 1);
+		ft_dprintf(STDERR_FILENO,"minishell: %s: Undefined variable.\n", var + 1);
 		ft_strdel(&var);
 		return (-1);
 	}

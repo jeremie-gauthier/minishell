@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 20:09:39 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/13 22:39:03 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/16 16:09:54 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ int			echo_builtin(t_shell *shell)
 
 	ret = echo_options(shell->argv);
 	i = ret;
-	if (exp_parser(shell) < 0)
-		return (-1);
 	while (shell->argv[i])
 	{
 		if (i > ret)
