@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 22:22:24 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/12 22:34:00 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/19 20:02:18 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ int		create_path(char *env[ARR_BUFF], t_shell *shell)
 	size_t	j;
 
 	i = 0;
-	while (ft_strncmp(env[i], PATH, 5))
+	while (env[i] && ft_strncmp(env[i], PATH, 5))
 		i++;
+	if (i == shell->env_idx)
+		return (0);
 	j = 4;
 	while (env[i][j++] && shell->path_bin_size < ARR_BUFF)
 	{
