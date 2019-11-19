@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:06:09 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/19 11:40:03 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/19 12:53:55 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		throw_error(t_shell *shell, char *str)
 	ft_dprintf(STDERR_FILENO, "minishell: %s: command not found\n", str);
 }
 
-static void	display_prompt()
+void		display_prompt(void)
 {
 	char	cwd[256];
 	char	*dir;
@@ -67,6 +67,7 @@ int			listen_stdin(t_shell *shell)
 	char		*input;
 
 	display_prompt();
+	signal(SIGINT, &sigint_core);
 	while (shell->status == RUNNING && get_next_line(STDIN_FILENO, &input) > 0)
 	{
 		if ((shell->argv = ft_strsplit(input, " \t\n", &shell->argc)))

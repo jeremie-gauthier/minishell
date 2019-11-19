@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:02:55 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/19 11:30:49 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/19 12:54:02 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,16 @@
 char		*access_file(const char *path, const char *filename);
 int			new_process(t_shell *shell, char **const env);
 int			exec(const t_shell *shell, char **const env);
+void		display_prompt(void);
 int			listen_stdin(t_shell *shell);
 void		throw_error(t_shell *shell, char *str);
-char		*glue_str(char const *s1, char const *s2, char glue);
+
+/*
+**	SIGNALS
+*/
+
+void		sigint_fork(int signum);
+void		sigint_core(int signum);
 
 /*
 **	EXPANSIONS

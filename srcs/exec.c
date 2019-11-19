@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:15:25 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/19 11:38:06 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/19 12:48:25 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,15 @@ int	exec(const t_shell *shell, char **const env)
 **	Create a new process with fork() where to exec the given args.
 */
 
+pid_t	fork_pid;
+
 int	new_process(t_shell *shell, char **const env)
 {
 	pid_t	pid;
 	int		status;
 
 	status = 0;
+	signal(SIGINT, &sigint_fork);
 	if ((pid = fork()) < 0)
 	{
 		ft_printf("fork error\n");
@@ -44,6 +47,7 @@ int	new_process(t_shell *shell, char **const env)
 	}
 	else
 		wait(&status);
+	signal(SIGINT, &sigint_core);
 	shell->exps.last_exit_status = status;
 	return (0);
 }
