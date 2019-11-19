@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 20:09:39 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/16 16:09:54 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/19 11:38:06 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ int			echo_builtin(t_shell *shell)
 		ft_printf("%s%%{reset}\n", EOL_COLOR);
 	else if (ret == 1)
 		ft_printf("\n");
+	shell->exps.last_exit_status = 0;
 	return (0);
 }

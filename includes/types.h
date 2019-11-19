@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 11:07:01 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/16 20:12:25 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/19 11:37:45 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,17 @@ typedef struct	s_vars
 	char	*path;	//unused
 }				t_vars;
 
+/*
+**	EXPANSIONS
+*/
+
+typedef struct	s_exp
+{
+	pid_t	pid;
+	int		last_exit_status;
+}				t_exp;
+
+
 typedef struct	s_shell
 {
 	char		*path_bin[ARR_BUFF];
@@ -37,6 +48,7 @@ typedef struct	s_shell
 	size_t		path_bin_size;
 	size_t		argc;
 	size_t		env_idx;
+	t_exp		exps;
 	t_status	status;
 }				t_shell;
 

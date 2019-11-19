@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:41:57 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/12 22:31:02 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/17 16:26:53 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	del_entry_env(t_shell *shell, const char *var)
 			idx++;
 		}
 		shell->env[idx] = NULL;
+		shell->env_idx--;
 		if (ft_strequ(var, "PATH"))
 			reload_path(shell->env, shell);
 	}

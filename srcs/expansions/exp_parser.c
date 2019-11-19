@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 00:05:12 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/16 16:00:14 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/19 11:05:26 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,9 @@ int		exp_parser(t_shell *shell)
 	while (shell->argv[i])
 	{
 		if (exp_tilde(shell, &shell->argv[i]) < 0
-				|| exp_parameter(shell, &shell->argv[i]) < 0)
+				|| exp_param(shell, &shell->argv[i]) < 0)
 			return (-1);
-		// ft_printf("{red}exp_parser: %s{reset}\n", shell->argv[i]);
-		// ft_printtab(shell->argv);
-		// ft_printf("\n");
 		i++;
 	}
-	// ft_printf("{yellow}END OF PARSER{reset}\n");
 	return (0);
 }

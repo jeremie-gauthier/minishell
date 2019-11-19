@@ -6,78 +6,83 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 19:51:37 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/16 20:32:03 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/19 11:37:04 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-**	Returns the length of the env var typed in the shell.
-**	Example:
-**		"$PATH string string" => 5 {$, P, A, T, H}
-*/
-
-static size_t	len_env_var(const char *var)
+static int	free_vars(char **key, char **value)
 {
-	size_t	len;
-
-	len = var[0] == '$' ? 1 : 0;
-	while (var[len] && (ft_isalnum(var[len])
-			|| ft_strchr(ENV_ALLOWED_CHARS, var[len])))
-		len++;
-	return (len);
+	ft_strdel(key);
+	ft_strdel(value);
+	return (-1);
 }
 
-static char	*get_var_name(const char *str)
+int	get_param_key_value(t_shell *shell, const char *param, char **key, char **value)
 {
-	char	*var;
-	size_t	len_var;
-
-	var = NULL;
-	len_var = len_env_var(str);
-	if (!(var = ft_strndup(str, len_var)))
-		return (NULL);
-	return (var);
-}
-
-static int	var_replacing(t_shell *shell, char **str, char *param)
-{
-	char	*tmp;
-	char	*var;
 	char	*content;
 
-	tmp = *str;
-	if (!(var = get_var_name(param)))
-		return (-1);
-	// ft_printf("{RED}%s{RESET}\n", var);
-	if (!(content = get_var_content(var + 1, shell->env)))
+	if (ft_isalpha(param[1]))
 	{
-		ft_dprintf(STDERR_FILENO,"minishell: %s: Undefined variable.\n", var + 1);
-		ft_strdel(&var);
-		return (-1);
+		*key = get_var_name(param);
+		if (!(content = get_var_content((*key) + 1, shell->env)))
+		{
+			ft_dprintf(STDERR_FILENO, "minishell: %s: Undefined variable.\n");
+			return (0);
+		}
+		*value = ft_strdup(content);
 	}
-	if (!(*str = replace_substr(*str, var, content)))
+	else if (param[1] == '$')
 	{
-		ft_strdel(&var);
-		ft_strdel(&content);
-		*str = tmp;
-		return (-1);
+		*key = ft_strdup("$$");
+		*value = ft_itoa(shell->exps.pid);
 	}
-	ft_strdel(&var);
-	ft_strdel(&tmp);
+	else if (param[1] == '?')
+	{
+		*key = ft_strdup("$?");
+		*value = ft_itoa(shell->exps.last_exit_status);
+	}
+	else
+	{
+		*key = ft_strdup("$");
+		*value = ft_strdup("$");
+	}
+	return (*key != NULL && *value != NULL);
+}
+
+static int	exp_replacing(t_shell *shell, char **str, const char *param)
+{
+	char	*key;
+	char	*value;
+
+	key = NULL;
+	value = NULL;
+	if (!get_param_key_value(shell, param, &key, &value))
+		return (free_vars(&key, &value));
+	if (!(*str = replace_substr(*str, key, value)))
+		return (free_vars(&key, &value));
+	free_vars(&key, &value);
 	return (0);
 }
 
-int			exp_parameter(t_shell *shell, char **str)
+int		exp_param(t_shell *shell, char **str)
 {
+	char	*tmp;
 	char	*param;
+	size_t	i;
 
-	while ((param = ft_strchr(*str, '$')))
+	i = 0;
+	while ((*str)[i] && (param = ft_strchr(&(*str)[i], '$')))
 	{
-		if (ft_isalpha(param[1]))
-			if (var_replacing(shell, str, param) < 0)
-				return (-1);
+		tmp = *str;
+		if (exp_replacing(shell, str, param) < 0)
+		{
+			*str = tmp;
+			return (-1);
+		}
+		i = param - tmp + 1;
+		ft_strdel(&tmp);
 	}
 	return (0);
 }

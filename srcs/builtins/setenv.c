@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 17:42:18 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/16 15:47:30 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/19 11:38:06 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int			setenv_builtin(t_shell *shell)
 {
+	shell->exps.last_exit_status = -1;
 	if (shell->argc != 2 && shell->argc != 3)
 	{
 		ft_dprintf(STDERR_FILENO,"minishell: setenv: Wrong number of arguments\n");
@@ -35,5 +36,6 @@ int			setenv_builtin(t_shell *shell)
 		ft_dprintf(STDERR_FILENO,"minishell: setenv: failed to insert new entry\n");
 		return (-1);
 	}
+	shell->exps.last_exit_status = 0;
 	return (0);
 }

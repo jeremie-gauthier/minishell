@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 00:03:58 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/16 20:29:56 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/19 11:04:10 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ static int	tilde_replacing(t_shell *shell, char **str,
 	return (0);
 }
 
-//traiter le cas de l'expansion `~` (remplacer par $HOME =>
-//	https://www.gnu.org/software/bash/manual/html_node/Tilde-Expansion.html#Tilde-Expansion)
 int		exp_tilde(t_shell *shell, char **str)
 {
 	char	*tilde;
@@ -41,7 +39,8 @@ int		exp_tilde(t_shell *shell, char **str)
 			return (tilde_replacing(shell, str, "~", "HOME"));
 		if (tilde[1] == '+')
 			return (tilde_replacing(shell, str, "~+", "PWD"));
-		//
+		if (tilde[1] == '-')
+			return (tilde_replacing(shell, str, "~-", "OLDPWD"));
 	}
 	return (0);
 }

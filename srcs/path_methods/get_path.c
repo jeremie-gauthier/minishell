@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 22:24:24 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/12 22:24:52 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/17 17:05:15 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,18 @@
 char	*get_path(char **path_bin, const char *filename)
 {
 	char	*pathname;
+	size_t	filelen;
 
-	while (*path_bin)
+	filelen = ft_strlen(filename);
+	if (ft_strspn(filename, ".") != filelen
+			&& ft_strspn(filename, "/") != filelen)
 	{
-		if ((pathname = access_file(*path_bin, filename)))
-			return (pathname);
-		path_bin++;
+		while (*path_bin)
+		{
+			if ((pathname = access_file(*path_bin, filename)))
+				return (pathname);
+			path_bin++;
+		}
 	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:40:59 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/16 15:47:07 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/17 16:33:53 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@ static int	insert_env(t_shell *shell, char *key, char *value)
 {
 	if (shell->env_idx >= ARR_BUFF - 1)
 	{
-		ft_dprintf(STDERR_FILENO,"minishell: setenv: no space left on env\n");
+		ft_dprintf(STDERR_FILENO, "minishell: setenv: no space left on env\n");
 		return (-1);
 	}
 	if (!(shell->env[shell->env_idx++] = glue_str(key, value, '=')))
+	{
+		ft_dprintf(STDERR_FILENO, "minishell: malloc() failed\n");
 		return (-1);
+	}
 	shell->env[shell->env_idx] = NULL;
 	return (0);
 }
@@ -29,7 +32,10 @@ static int	update_env(t_shell *shell, size_t idx, char *key, char *value)
 {
 	ft_strdel(&shell->env[idx]);
 	if (!(shell->env[idx] = glue_str(key, value, '=')))
+	{
+		ft_dprintf(STDERR_FILENO, "minishell: malloc() failed\n");
 		return (-1);
+	}
 	if (ft_strequ(key, "PATH"))
 		if (reload_path(shell->env, shell) < 0)
 			return (-1);

@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 13:20:06 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/16 20:28:11 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/19 11:38:06 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,26 @@
 static int	update_pwd(t_shell *shell)
 {
 	char	cwd[256];
+	char	*owd;
 
 	if (getcwd(cwd, sizeof(cwd)) == NULL)
 	{
 		ft_dprintf(STDERR_FILENO, "minishell: getcwd() error\n");
 		return (-1);
 	}
-	if (upsert_env(shell, "PWD", cwd) < 0)
+	if ((owd = dup_var_content("PWD", shell->env)))
 	{
-		ft_dprintf(STDERR_FILENO, "minishell: malloc() error\n");
-		return (-1);
+		if (upsert_env(shell, "OLDPWD", owd) < 0)
+		{
+			ft_strdel(&owd);
+			return (-1);
+		}
+		ft_strdel(&owd);
 	}
+	else if (upsert_env(shell, "OLDPWD", cwd) < 0)
+		return (-1);
+	if (upsert_env(shell, "PWD", cwd) < 0)
+		return (-1);
 	return (0);
 }
 
@@ -33,6 +42,7 @@ int			cd_builtin(t_shell *shell)
 {
 	char	*dest;
 
+	shell->exps.last_exit_status = -1;
 	if (shell->argc > 2)
 	{
 		ft_dprintf(2, "minishell: cd: too many arguments\n");
@@ -47,5 +57,6 @@ int			cd_builtin(t_shell *shell)
 	}
 	if (update_pwd(shell) < 0)
 		return (-1);
+	shell->exps.last_exit_status = 0;
 	return (0);
 }
