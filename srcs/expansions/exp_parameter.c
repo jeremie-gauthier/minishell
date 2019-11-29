@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 19:51:37 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/19 11:37:04 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/19 20:22:57 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,18 @@ static int	free_vars(char **key, char **value)
 	return (-1);
 }
 
-int	get_param_key_value(t_shell *shell, const char *param, char **key, char **value)
+int	get_param_key_value(t_shell *shell, const char *param,
+		char **key, char **value)
 {
 	char	*content;
 
 	if (ft_isalpha(param[1]))
 	{
 		*key = get_var_name(param);
-		if (!(content = get_var_content((*key) + 1, shell->env)))
+		if (!(content = get_var_content(*key + 1, shell->env)))
 		{
-			ft_dprintf(STDERR_FILENO, "minishell: %s: Undefined variable.\n");
+			ft_dprintf(STDERR_FILENO,
+				"minishell: %s: Undefined variable.\n", *key + 1);
 			return (0);
 		}
 		*value = ft_strdup(content);

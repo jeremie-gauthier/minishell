@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 10:03:04 by jergauth          #+#    #+#              #
-#    Updated: 2019/11/29 10:02:10 by jergauth         ###   ########.fr        #
+#    Updated: 2019/11/29 10:06:41 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,7 @@ SRCS=	main.c\
 		exec.c\
 		core_shell.c\
 		signals.c\
-		errors.c\
-		debug.c
+		errors.c
 
 BT_DIR=	$(SRCS_DIR)/builtins
 BT_SRCS=	get_builtin.c\
@@ -95,7 +94,7 @@ INCS = $(INC) $(LIB_INC)
 ## FLAGS
 ifeq ($(UNAME), Darwin)
 CC		=	gcc
-CFLAGS	+=	-Wall -Werror -Wextra# -O2 -fno-builtin -flto=full
+CFLAGS	+=	-Wall -Werror -Wextra -g3 # -O2 -fno-builtin -flto=full
 endif
 
 ifeq ($(UNAME), Linux)

@@ -208,7 +208,7 @@ ALL_PRE= $(TREES_OBJS_PRE) $(COMP_OBJS_PRE) $(CONV_OBJS_PRE) $(PRINTF_OBJS_PRE) 
 
 ifeq ($(UNAME), Darwin)
 CC		=	gcc
-CFLAGS	+=	-Wall -Werror -Wextra# -O2 -fno-builtin -flto=full
+CFLAGS	+=	-Wall -Werror -Wextra -g3# -O2 -fno-builtin -flto=full
 endif
 
 ifeq ($(UNAME), Linux)
