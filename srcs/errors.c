@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   interpreter.c                                      :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 10:30:53 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/29 10:04:15 by jergauth         ###   ########.fr       */
+/*   Created: 2019/11/29 09:59:34 by jergauth          #+#    #+#             */
+/*   Updated: 2019/11/29 10:03:33 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-**	Returns a malloc'ed string corresponding to the file pathname
-**	or NULL if the filename is not found.
-*/
-
-char	*access_file(const char *path, const char *filename)
+int		throw_cmd_error(t_shell *shell, const char *str)
 {
-	char	*pathname;
+	shell->exps.last_exit_status = 127;
+	ft_dprintf(STDERR_FILENO, "minishell: %s: command not found\n", str);
+	return (-1);
+}
 
-	if (!(pathname = glue_str(path, filename, '/')))
-	{
-		throw_malloc_error();
-		return (NULL);
-	}
-	if (access(pathname, F_OK | X_OK) < 0)
-	{
-		ft_strdel(&pathname);
-		return (NULL);
-	}
-	return (pathname);
+int		throw_malloc_error(void)
+{
+	ft_dprintf(STDERR_FILENO, "minishell: malloc() failed\n");
+	return (-1);
 }
