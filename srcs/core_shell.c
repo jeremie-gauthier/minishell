@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:06:09 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/29 10:04:45 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/29 10:12:52 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,7 @@ int			listen_stdin(t_shell *shell)
 	signal(SIGINT, &sigint_core);
 	while (shell->status == RUNNING && get_next_line(STDIN_FILENO, &input) > 0)
 	{
-		if (iter_cmds(shell, input) < 0)
-		{
-			ft_strdel(&input);
-			return (-1);
-		}
+		iter_cmds(shell, input);
 		ft_strdel(&input);
 		if (shell->status == RUNNING)
 			display_prompt();
