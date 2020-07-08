@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:06:09 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/19 12:53:55 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/29 10:12:52 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@ void		free_cmds(t_shell **shell)
 	ft_strdel(&(*shell)->pathname);
 	len = ft_arrlen((void**)(*shell)->argv);
 	ft_tabdel((void**)(*shell)->argv, len);
-}
-
-void		throw_error(t_shell *shell, char *str)
-{
-	shell->exps.last_exit_status = 127;
-	ft_dprintf(STDERR_FILENO, "minishell: %s: command not found\n", str);
 }
 
 void		display_prompt(void)
@@ -53,9 +47,28 @@ static void	run_cmd(t_shell *shell)
 		else if ((shell->pathname = get_path(shell->path_bin, shell->argv[0])))
 			new_process(shell, shell->env);
 		else
-			throw_error(shell, shell->argv[0]);
+			throw_cmd_error(shell, shell->argv[0]);
 	}
-	free_cmds(&shell);
+}
+
+static int	iter_cmds(t_shell *shell, const char *input)
+{
+	char	**cmds;
+	size_t	len_cmds;
+	size_t	i;
+
+	if (!(cmds = ft_strsplit(input, ";", &len_cmds)))
+		return (-1);
+	i = 0;
+	while (i < len_cmds)
+	{
+		if ((shell->argv = ft_strsplit(cmds[i], " \t\n", &shell->argc)))
+			run_cmd(shell);
+		free_cmds(&shell);
+		i++;
+	}
+	ft_tabdel((void**)cmds, len_cmds);
+	return (0);
 }
 
 /*
@@ -64,14 +77,13 @@ static void	run_cmd(t_shell *shell)
 
 int			listen_stdin(t_shell *shell)
 {
-	char		*input;
+	char	*input;
 
 	display_prompt();
 	signal(SIGINT, &sigint_core);
 	while (shell->status == RUNNING && get_next_line(STDIN_FILENO, &input) > 0)
 	{
-		if ((shell->argv = ft_strsplit(input, " \t\n", &shell->argc)))
-			run_cmd(shell);
+		iter_cmds(shell, input);
 		ft_strdel(&input);
 		if (shell->status == RUNNING)
 			display_prompt();

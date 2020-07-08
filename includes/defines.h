@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 11:24:14 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/08 12:18:10 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/08 15:03:02 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define PATH			"PATH="
 # define PATH_DELIMITER	":"
 
-# define PROMPT_COLOR	"\033[1;36m"
+# define PROMPT_COLOR	"\033[1;32m"
 
 # define ARR_BUFF	128
 

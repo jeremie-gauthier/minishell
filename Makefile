@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 10:03:04 by jergauth          #+#    #+#              #
-#    Updated: 2019/11/19 19:37:58 by jergauth         ###   ########.fr        #
+#    Updated: 2019/11/29 10:06:41 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRCS=	main.c\
 		interpreter.c\
 		exec.c\
 		core_shell.c\
-		signals.c
+		signals.c\
+		errors.c
 
 BT_DIR=	$(SRCS_DIR)/builtins
 BT_SRCS=	get_builtin.c\

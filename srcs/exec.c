@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:15:25 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/19 12:48:25 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/11/29 10:04:54 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	exec(const t_shell *shell, char **const env)
 {
 	if (execve(shell->pathname, shell->argv, env) < 0)
 	{
-		throw_error((t_shell*)shell, shell->pathname);
+		throw_cmd_error((t_shell*)shell, shell->pathname);
 		return (-1);
 	}
 	return (0);
