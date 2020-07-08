@@ -1,0 +1,12 @@
+BONUS:
+
+TILDE
+~-: replaced by OLDPWD
+~+: replaced by PWD
+
+DOLLAR
+$?: show the last exit status
+$$: show the current pid
+
+SIGNALS:
+Ctrl+C: Ability to kill forked process
