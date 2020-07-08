@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:07:07 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/08 15:47:34 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/08 17:56:36 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ static int	shell_init(t_shell *shell, char **env)
 	return (0);
 }
 
-int			main(int argc, char **argv, char **env) {
+int			main(int argc, char **argv, char **env)
+{
 	t_shell	shell;
 
 	(void)argc;

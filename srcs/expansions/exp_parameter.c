@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 19:51:37 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/19 20:22:57 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/08 17:55:44 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,15 @@ static int	free_vars(char **key, char **value)
 	return (-1);
 }
 
-int	get_param_key_value(t_shell *shell, const char *param,
-		char **key, char **value)
+static void	set_key_value(char **ptrkey, char **ptrvalue,
+						char *key, char *value)
+{
+	*ptrkey = key;
+	*ptrvalue = value;
+}
+
+int			get_param_key_value(t_shell *shell, const char *param,
+								char **key, char **value)
 {
 	char	*content;
 
@@ -36,20 +43,12 @@ int	get_param_key_value(t_shell *shell, const char *param,
 		*value = ft_strdup(content);
 	}
 	else if (param[1] == '$')
-	{
-		*key = ft_strdup("$$");
-		*value = ft_itoa(shell->exps.pid);
-	}
+		set_key_value(key, value, ft_strdup("$$"), ft_itoa(shell->exps.pid));
 	else if (param[1] == '?')
-	{
-		*key = ft_strdup("$?");
-		*value = ft_itoa(shell->exps.last_exit_status);
-	}
+		set_key_value(key, value, ft_strdup("$?"),
+			ft_itoa(shell->exps.last_exit_status));
 	else
-	{
-		*key = ft_strdup("$");
-		*value = ft_strdup("$");
-	}
+		set_key_value(key, value, ft_strdup("$"), ft_strdup("$"));
 	return (*key != NULL && *value != NULL);
 }
 
@@ -68,7 +67,7 @@ static int	exp_replacing(t_shell *shell, char **str, const char *param)
 	return (0);
 }
 
-int		exp_param(t_shell *shell, char **str)
+int			exp_param(t_shell *shell, char **str)
 {
 	char	*tmp;
 	char	*param;

@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 20:09:39 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/19 11:38:06 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/08 15:48:25 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static size_t	echo_options(char **const argv)
 	return (ret);
 }
 
-int			echo_builtin(t_shell *shell)
+int				echo_builtin(t_shell *shell)
 {
 	size_t	i;
 	size_t	ret;

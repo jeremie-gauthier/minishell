@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 00:03:58 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/19 21:25:38 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/08 15:58:29 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	tilde_replacing(t_shell *shell, char **str,
 	return (0);
 }
 
-int		exp_tilde(t_shell *shell, char **str)
+int			exp_tilde(t_shell *shell, char **str)
 {
 	char	*tilde;
 	size_t	i;

@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:15:25 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/29 10:04:54 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/08 15:58:15 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	exec(const t_shell *shell, char **const env)
 /*
 **	Create a new process with fork() where to exec the given args.
 */
-
-pid_t	fork_pid;
 
 int	new_process(t_shell *shell, char **const env)
 {
