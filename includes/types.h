@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 11:07:01 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/08 12:18:56 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/08 15:44:18 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef enum	e_status
 typedef struct	s_vars
 {
 	char	*home;
-	char	*path;	//unused
 }				t_vars;
 
 /*

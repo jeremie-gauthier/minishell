@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:07:07 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/19 11:38:06 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/08 15:47:34 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static void	shell_leave(t_shell *shell)
 {
 	ft_strdel(&shell->vars.home);
-	// ft_strdel(&shell->vars.path); //unused
 	free_env(shell->env, shell->env_idx);
 	free_path(shell->path_bin);
 	ft_bzero((void*)shell, sizeof(t_shell));

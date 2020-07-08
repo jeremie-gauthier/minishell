@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:02:55 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/29 10:03:41 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/08 15:45:06 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,5 @@ int			cd_builtin(t_shell *shell);
 int			env_builtin(t_shell *shell);
 int			setenv_builtin(t_shell *shell);
 int			unsetenv_builtin(t_shell *shell);
-
-// DEBUG FUNCTIONS
-void		test_content_list_output(t_list *elem);
 
 #endif
