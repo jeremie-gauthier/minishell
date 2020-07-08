@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 11:07:01 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/19 11:37:45 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/08 12:18:56 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef enum	e_status
 {
-	STOPPED	= 0,
+	STOPPED = 0,
 	RUNNING
 }				t_status;
 
@@ -36,7 +36,6 @@ typedef struct	s_exp
 	pid_t	pid;
 	int		last_exit_status;
 }				t_exp;
-
 
 typedef struct	s_shell
 {
