@@ -6,17 +6,18 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 09:59:34 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/29 10:03:33 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/09 07:43:02 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		throw_cmd_error(t_shell *shell, const char *str)
+int   throw_error(t_shell *shell, const char *cmd, const char *err,
+                  const int exit_status)
 {
-	shell->exps.last_exit_status = 127;
-	ft_dprintf(STDERR_FILENO, "minishell: %s: command not found\n", str);
-	return (-1);
+  shell->exps.last_exit_status = exit_status;
+  ft_dprintf(STDERR_FILENO, "minishell: %s: %s\n", cmd, err);
+  return (FAILURE);
 }
 
 int		throw_malloc_error(void)

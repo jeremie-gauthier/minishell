@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:02:55 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/08 15:45:06 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/09 07:43:18 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int			listen_stdin(t_shell *shell);
 **	ERRORS
 */
 
-int			throw_cmd_error(t_shell *shell, const char *str);
+int   throw_error(t_shell *shell, const char *cmd, const char *err,
+                  const int exit_status);
 int			throw_malloc_error(void);
 
 /*

@@ -47,7 +47,7 @@ static void	run_cmd(t_shell *shell)
 		else if ((shell->pathname = get_path(shell->path_bin, shell->argv[0])))
 			new_process(shell, shell->env);
 		else
-			throw_cmd_error(shell, shell->argv[0]);
+			throw_error(shell, shell->argv[0], "command not found", CMD_NOT_FOUND);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:15:25 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/08 15:58:15 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/09 07:41:09 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	exec(const t_shell *shell, char **const env)
 {
 	if (execve(shell->pathname, shell->argv, env) < 0)
 	{
-		throw_cmd_error((t_shell*)shell, shell->pathname);
+		throw_error((t_shell*)shell, shell->pathname, "command not found",
+                    CMD_NOT_FOUND);
 		return (-1);
 	}
 	return (0);
