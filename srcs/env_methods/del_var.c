@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:41:57 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/19 19:42:49 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/09 09:18:35 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	del_entry_env(t_shell *shell, const char *var)
 	if (idx != 0xDEADBABE)
 	{
 		ft_strdel(&shell->env[idx]);
-		while (shell->env[idx + 1])
+		while (shell->env[idx + 1] && (idx + 1) < ARR_BUFF)
 		{
 			shell->env[idx] = shell->env[idx + 1];
 			idx++;
