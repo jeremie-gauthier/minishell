@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 13:20:06 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/19 11:38:06 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/09 15:38:17 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int			cd_builtin(t_shell *shell)
 		ft_dprintf(2, "minishell: cd: too many arguments\n");
 		return (-1);
 	}
-	dest = shell->argc == 1 ? shell->vars.home : shell->argv[1];
+	if (!(dest = shell->argc == 1 ? shell->vars.home : shell->argv[1]))
+    return throw_error(shell, "cd", "No such file or directory", -1);
 	if (chdir(dest) != 0)
 	{
 		ft_dprintf(2, "minishell: cd: %s: No such file or directory\n",
