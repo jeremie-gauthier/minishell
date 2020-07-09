@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:06:09 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/09 09:34:54 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/09 15:47:22 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ int			listen_stdin(t_shell *shell)
 		if (shell->status == RUNNING)
 			display_prompt();
 	}
+  if (input && input[0] == 0)
+    ft_printf("\n");
 	ft_strdel(&input);
 	return (0);
 }
