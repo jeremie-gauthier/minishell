@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 22:24:24 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/17 17:05:15 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/09 08:57:48 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 **	Iterate through $PATH to get the directory where we can run the command.
 */
 
-char	*get_path(char **path_bin, const char *filename)
+static char	*search_env_path(char **path_bin, const char *filename)
 {
 	char	*pathname;
 	size_t	filelen;
 
 	filelen = ft_strlen(filename);
-	if (ft_strspn(filename, ".") != filelen
-			&& ft_strspn(filename, "/") != filelen)
+	if (ft_strspn(filename, ".") != filelen &&
+		  ft_strspn(filename, "/") != filelen)
 	{
 		while (*path_bin)
 		{
@@ -33,4 +33,33 @@ char	*get_path(char **path_bin, const char *filename)
 		}
 	}
 	return (NULL);
+}
+
+static char *search_relative_path(const char *filename)
+{
+  char	cwd[256];
+  char  *pathname;
+
+  if (getcwd(cwd, sizeof(cwd)))
+    if ((pathname = access_file(cwd, &filename[2])))
+      return (pathname);
+  return (NULL);
+}
+
+/*
+**  Will look for a matching file in the relative, absolute and env paths
+*/
+
+char	*get_path(char **path_bin, const char *filename)
+{
+  char  *pathname;
+
+  pathname = NULL;
+  if (filename[0] == '.')
+    pathname = search_relative_path(filename);
+  else if (filename[0] == '/')
+    pathname = (char *)filename;
+  else
+    pathname = search_env_path(path_bin, filename);
+  return (pathname);
 }
