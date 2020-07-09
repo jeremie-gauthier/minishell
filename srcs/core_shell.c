@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:06:09 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/09 07:37:37 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/09 08:17:53 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static void	run_cmd(t_shell *shell)
 
 static int	iter_cmds(t_shell *shell, const char *input)
 {
-	char	**cmds;
-	size_t	len_cmds;
+	char    **cmds;
+	size_t  len_cmds;
 	size_t	i;
 
 	if (!(cmds = ft_strsplit(input, CMD_DELIMITER, &len_cmds)))
