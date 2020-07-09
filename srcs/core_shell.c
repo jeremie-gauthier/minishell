@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:06:09 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/09 08:21:42 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/09 09:34:54 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	run_cmd(t_shell *shell)
 {
 	t_builtin	fptr;
 
-	if (exp_parser(shell) == 0)
+	if (exp_parser(shell) == SUCCESS)
 	{
 		if ((fptr = get_builtin(shell->argv[0])))
 			fptr(shell);
