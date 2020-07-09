@@ -6,12 +6,14 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 11:24:14 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/08 15:03:02 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/09 07:40:26 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
+
+# define CMD_DELIMITER ";"
 
 # define PATH			"PATH="
 # define PATH_DELIMITER	":"
@@ -30,5 +32,19 @@
 # define ENV_ALLOWED_CHARS	"-_+"
 
 # define EOL_COLOR	"\033[30;47m"
+
+/*
+**  SHELL INNER STATUS
+*/
+
+# define FAILURE  -1
+# define SUCCESS  0
+
+/*
+**  CMDS EXIT STATUS
+*/
+
+# define CMD_ERROR 1
+# define CMD_NOT_FOUND  127
 
 #endif
