@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:43:11 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/09 08:03:49 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/09 15:13:21 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@ static void increment_shell_level(t_shell *shell)
   }
 }
 
+static void default_env(t_shell *shell)
+{
+  char	cwd[256];
+
+  upsert_env(shell, "SHLVL", "1");
+  if (getcwd(cwd, sizeof(cwd)))
+    upsert_env(shell, "PWD", cwd);
+}
+
 int	  	    create_env(t_shell *shell, char **const env)
 {
 	size_t	i;
@@ -44,6 +53,9 @@ int	  	    create_env(t_shell *shell, char **const env)
 		i++;
 	}
 	shell->env_idx = i;
-  increment_shell_level(shell);
+  if (shell->env_idx > 0)
+    increment_shell_level(shell);
+  else
+    default_env(shell);
 	return (0);
 }

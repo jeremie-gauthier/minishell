@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:07:07 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/09 08:13:09 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/09 14:52:35 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,9 @@ static void	shell_leave(t_shell *shell)
 	ft_bzero((void*)shell, sizeof(t_shell));
 }
 
-static int	init_locale_vars(t_vars *vars, char **const env)
+static void	init_locale_vars(t_vars *vars, char **const env)
 {
-	if (!(vars->home = dup_var_content("HOME", env)))
-	{
-		ft_dprintf(STDERR_FILENO,
-			"minishell: Error while setting locale vars\n");
-		return (-1);
-	}
-	return (0);
+	vars->home = dup_var_content("HOME", env);
 }
 
 static void	init_expansions(t_exp *exp)
@@ -41,7 +35,7 @@ static int	shell_init(t_shell *shell, char **env)
 {
 	if (read(STDIN_FILENO, 0, 0) < 0)
 	{
-		ft_dprintf(STDERR_FILENO, "stdin not open !\n");
+		ft_dprintf(STDERR_FILENO, "minishell: Cannot read stdin\n");
 		return (-1);
 	}
 	ft_bzero((void*)shell, sizeof(t_shell));
@@ -57,8 +51,7 @@ static int	shell_init(t_shell *shell, char **env)
 	}
 	shell->status = RUNNING;
 	init_expansions(&shell->exps);
-	if (init_locale_vars(&shell->vars, shell->env) < 0)
-		return (-1);
+	init_locale_vars(&shell->vars, shell->env);
 	return (0);
 }
 
