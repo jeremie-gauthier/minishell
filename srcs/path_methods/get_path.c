@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 22:24:24 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/10 12:36:10 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 12:48:38 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,12 @@ static char	*search_relative_path(const char *filename)
 	char	cwd[256];
 	char	*pathname;
 
-	if (getcwd(cwd, sizeof(cwd)))
-		if ((pathname = access_file(cwd, &filename[2])))
-			return (pathname);
+	if (ft_strlen(filename) > 1)
+	{
+		if (getcwd(cwd, sizeof(cwd)))
+			if ((pathname = access_file(cwd, &filename[2])))
+				return (pathname);
+	}
 	return (NULL);
 }
 
