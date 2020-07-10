@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:02:55 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/10 15:15:15 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 15:52:08 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int			new_process(t_shell *shell, char **const env);
 int			exec(const t_shell *shell, char **const env);
 void		display_prompt(void);
 void		listen_stdin(t_shell *shell);
+void		free_cmds(t_shell **shell);
 
 /*
 **	ERRORS
