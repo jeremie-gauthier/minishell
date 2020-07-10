@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:40:59 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/09 09:25:49 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 12:37:10 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ static int	update_env(t_shell *shell, size_t idx, char *key, char *value)
 int			upsert_env(t_shell *shell, char *key, char *value)
 {
 	size_t	idx;
-  int     ret;
+	int		ret;
 
 	if (value == NULL)
 		value = "";
 	if ((idx = get_var_idx(key, shell->env)) != 0xDEADBABE)
 		ret = update_env(shell, idx, key, value);
 	else
-    ret = insert_env(shell, key, value);
-  if (ret == 0 && ft_strequ(key, "PATH"))
+		ret = insert_env(shell, key, value);
+	if (ret == 0 && ft_strequ(key, "PATH"))
 		ret = reload_path(shell->env, shell);
-  return (ret);
+	return (ret);
 }

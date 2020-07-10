@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 11:39:54 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/15 13:13:55 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 12:38:44 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "str.h"
 # include "ft_printf.h"
 # include "conversions.h"
-# include "IO.h"
+# include "io.h"
 # include "linked_lists.h"
 # include "math.h"
 # include "mem.h"

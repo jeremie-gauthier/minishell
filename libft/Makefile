@@ -87,7 +87,7 @@ PRINTF_OBJS= $(PRINTF_SRCS:.c=.o)
 PRINTF_OBJS_DIR= $(PRINTF_DIR)/$(OBJS_DIRNAME)
 PRINTF_OBJS_PRE= $(addprefix $(PRINTF_OBJS_DIR)/, $(PRINTF_OBJS))
 
-IO_DIR=	IO
+IO_DIR=	io
 IO_SRCS=	buffer.c\
 			ft_printtab.c\
 			get_next_line.c\
@@ -224,7 +224,7 @@ HEADER=	libft.h\
 		comparisons.h\
 		conversions.h\
 		lft_defines.h\
-		IO.h\
+		io.h\
 		linked_lists.h\
 		math.h\
 		mem.h\

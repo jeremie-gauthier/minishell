@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:06:09 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/09 15:47:22 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 12:36:33 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,15 @@ static void	run_cmd(t_shell *shell)
 		else if ((shell->pathname = get_path(shell->path_bin, shell->argv[0])))
 			new_process(shell, shell->env);
 		else
-			throw_error(shell, shell->argv[0], "command not found", CMD_NOT_FOUND);
+			throw_error(shell, shell->argv[0],
+						"command not found", CMD_NOT_FOUND);
 	}
 }
 
 static int	iter_cmds(t_shell *shell, const char *input)
 {
-	char    **cmds;
-	size_t  len_cmds;
+	char	**cmds;
+	size_t	len_cmds;
 	size_t	i;
 
 	if (!(cmds = ft_strsplit(input, CMD_DELIMITER, &len_cmds)))
@@ -63,10 +64,10 @@ static int	iter_cmds(t_shell *shell, const char *input)
 	while (i < len_cmds)
 	{
 		if ((shell->argv = ft_strsplit(cmds[i], " \t\n", &shell->argc)))
-    {
+		{
 			run_cmd(shell);
-		  free_cmds(&shell);
-    }
+			free_cmds(&shell);
+		}
 		i++;
 	}
 	ft_tabdel((void**)cmds, len_cmds);
@@ -90,8 +91,8 @@ int			listen_stdin(t_shell *shell)
 		if (shell->status == RUNNING)
 			display_prompt();
 	}
-  if (input && input[0] == 0)
-    ft_printf("\n");
+	if (input && input[0] == 0)
+		ft_printf("\n");
 	ft_strdel(&input);
 	return (0);
 }

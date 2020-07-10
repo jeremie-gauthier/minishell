@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 22:24:24 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/09 08:57:48 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 12:36:10 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*search_env_path(char **path_bin, const char *filename)
 
 	filelen = ft_strlen(filename);
 	if (ft_strspn(filename, ".") != filelen &&
-		  ft_strspn(filename, "/") != filelen)
+		ft_strspn(filename, "/") != filelen)
 	{
 		while (*path_bin)
 		{
@@ -35,31 +35,31 @@ static char	*search_env_path(char **path_bin, const char *filename)
 	return (NULL);
 }
 
-static char *search_relative_path(const char *filename)
+static char	*search_relative_path(const char *filename)
 {
-  char	cwd[256];
-  char  *pathname;
+	char	cwd[256];
+	char	*pathname;
 
-  if (getcwd(cwd, sizeof(cwd)))
-    if ((pathname = access_file(cwd, &filename[2])))
-      return (pathname);
-  return (NULL);
+	if (getcwd(cwd, sizeof(cwd)))
+		if ((pathname = access_file(cwd, &filename[2])))
+			return (pathname);
+	return (NULL);
 }
 
 /*
 **  Will look for a matching file in the relative, absolute and env paths
 */
 
-char	*get_path(char **path_bin, const char *filename)
+char		*get_path(char **path_bin, const char *filename)
 {
-  char  *pathname;
+	char	*pathname;
 
-  pathname = NULL;
-  if (filename[0] == '.')
-    pathname = search_relative_path(filename);
-  else if (filename[0] == '/')
-    pathname = (char *)filename;
-  else
-    pathname = search_env_path(path_bin, filename);
-  return (pathname);
+	pathname = NULL;
+	if (filename[0] == '.')
+		pathname = search_relative_path(filename);
+	else if (filename[0] == '/')
+		pathname = (char *)filename;
+	else
+		pathname = search_env_path(path_bin, filename);
+	return (pathname);
 }

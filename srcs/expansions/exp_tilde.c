@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 00:03:58 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/09 07:46:29 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 12:35:58 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,18 @@ int			exp_tilde(t_shell *shell, char **str)
 	char	*tilde;
 
 	tilde = ft_strchr(*str, '~');
-  if (tilde)
-  {
-    if (tilde[1] == '/' || tilde[1] == '\0')
-      return (tilde_replacing(shell, str, "~", "HOME"));
-    else if (tilde[1] == '+')
-      return (tilde_replacing(shell, str, "~+", "PWD"));
-    else if (tilde[1] == '-')
-      return (tilde_replacing(shell, str, "~-", "OLDPWD"));
-    else
-      return (throw_error(shell, "~", "no such named directory", CMD_ERROR));
-  }
-  else
-    return (0);
+	if (tilde)
+	{
+		if (tilde[1] == '/' || tilde[1] == '\0')
+			return (tilde_replacing(shell, str, "~", "HOME"));
+		else if (tilde[1] == '+')
+			return (tilde_replacing(shell, str, "~+", "PWD"));
+		else if (tilde[1] == '-')
+			return (tilde_replacing(shell, str, "~-", "OLDPWD"));
+		else
+			return (throw_error(shell, "~",
+					"no such named directory", CMD_ERROR));
+	}
+	else
+		return (0);
 }

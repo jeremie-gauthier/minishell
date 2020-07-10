@@ -6,38 +6,38 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:43:11 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/09 15:13:21 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 12:29:43 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void increment_shell_level(t_shell *shell)
+static void	increment_shell_level(t_shell *shell)
 {
-  char *shell_lvl_content;
-  int   shell_lvl;
+	char	*shell_lvl_content;
+	int		shell_lvl;
 
-  if ((shell_lvl_content = get_var_content("SHLVL", shell->env)))
-  {
-    shell_lvl = ft_atoi(shell_lvl_content) + 1;
-    if ((shell_lvl_content = ft_itoa(shell_lvl)))
-    {
-      upsert_env(shell, "SHLVL", shell_lvl_content);
-      ft_strdel(&shell_lvl_content);
-    }
-  }
+	if ((shell_lvl_content = get_var_content("SHLVL", shell->env)))
+	{
+		shell_lvl = ft_atoi(shell_lvl_content) + 1;
+		if ((shell_lvl_content = ft_itoa(shell_lvl)))
+		{
+			upsert_env(shell, "SHLVL", shell_lvl_content);
+			ft_strdel(&shell_lvl_content);
+		}
+	}
 }
 
-static void default_env(t_shell *shell)
+static void	default_env(t_shell *shell)
 {
-  char	cwd[256];
+	char	cwd[256];
 
-  upsert_env(shell, "SHLVL", "1");
-  if (getcwd(cwd, sizeof(cwd)))
-    upsert_env(shell, "PWD", cwd);
+	upsert_env(shell, "SHLVL", "1");
+	if (getcwd(cwd, sizeof(cwd)))
+		upsert_env(shell, "PWD", cwd);
 }
 
-int	  	    create_env(t_shell *shell, char **const env)
+int			create_env(t_shell *shell, char **const env)
 {
 	size_t	i;
 
@@ -53,9 +53,9 @@ int	  	    create_env(t_shell *shell, char **const env)
 		i++;
 	}
 	shell->env_idx = i;
-  if (shell->env_idx > 0)
-    increment_shell_level(shell);
-  else
-    default_env(shell);
+	if (shell->env_idx > 0)
+		increment_shell_level(shell);
+	else
+		default_env(shell);
 	return (0);
 }

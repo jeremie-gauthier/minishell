@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:07:07 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/09 14:52:35 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 12:33:59 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ static int	shell_init(t_shell *shell, char **env)
 int			main(int argc, char **argv, char **env)
 {
 	t_shell	shell;
-  int     last_exit_status;
+	int		last_exit_status;
 
 	(void)argc;
 	(void)argv;
 	if (shell_init(&shell, env) < 0)
 		return (-1);
 	listen_stdin(&shell);
-  last_exit_status = shell.exps.last_exit_status;
+	last_exit_status = shell.exps.last_exit_status;
 	shell_leave(&shell);
 	return (last_exit_status);
 }
