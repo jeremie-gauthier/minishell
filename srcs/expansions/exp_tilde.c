@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 00:03:58 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/10 12:35:58 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 15:10:39 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ static int	tilde_replacing(t_shell *shell, char **str,
 
 	tmp = *str;
 	if (!(content = get_var_content(var, shell->env)))
-		return (-1);
+		return (FAILURE);
 	if (!(*str = replace_substr(*str, tilde, content)))
-		return (-1);
+		return (FAILURE);
 	ft_strdel(&tmp);
-	return (0);
+	return (SUCCESS);
 }
 
 int			exp_tilde(t_shell *shell, char **str)
@@ -45,5 +45,5 @@ int			exp_tilde(t_shell *shell, char **str)
 					"no such named directory", CMD_ERROR));
 	}
 	else
-		return (0);
+		return (SUCCESS);
 }

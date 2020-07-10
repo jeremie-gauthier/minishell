@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:15:25 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/10 12:32:11 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 15:19:08 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	exec(const t_shell *shell, char **const env)
 	{
 		throw_error((t_shell*)shell, shell->pathname,
 					"command not found", CMD_NOT_FOUND);
-		return (-1);
+		return (FAILURE);
 	}
-	return (0);
+	return (SUCCESS);
 }
 
 /*
@@ -35,18 +35,15 @@ int	new_process(t_shell *shell, char **const env)
 	status = 0;
 	signal(SIGINT, &sigint_fork);
 	if ((pid = fork()) < 0)
-	{
-		ft_printf("fork error\n");
-		return (-1);
-	}
+		return (throw_err_msg("fork() failed"));
 	if (pid == 0)
 	{
 		if (exec(shell, env) < 0)
-			exit(-1);
+			exit(FAILURE);
 	}
 	else
 		wait(&status);
 	signal(SIGINT, &sigint_core);
 	shell->exps.last_exit_status = status;
-	return (0);
+	return (SUCCESS);
 }

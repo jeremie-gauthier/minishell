@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:06:09 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/10 12:36:33 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 14:09:58 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	iter_cmds(t_shell *shell, const char *input)
 	size_t	i;
 
 	if (!(cmds = ft_strsplit(input, CMD_DELIMITER, &len_cmds)))
-		return (-1);
+		return (FAILURE);
 	i = 0;
 	while (i < len_cmds)
 	{
@@ -71,14 +71,14 @@ static int	iter_cmds(t_shell *shell, const char *input)
 		i++;
 	}
 	ft_tabdel((void**)cmds, len_cmds);
-	return (0);
+	return (SUCCESS);
 }
 
 /*
 **	The main loop of minishell, where we can send commands.
 */
 
-int			listen_stdin(t_shell *shell)
+void		listen_stdin(t_shell *shell)
 {
 	char	*input;
 
@@ -94,5 +94,4 @@ int			listen_stdin(t_shell *shell)
 	if (input && input[0] == 0)
 		ft_printf("\n");
 	ft_strdel(&input);
-	return (0);
 }

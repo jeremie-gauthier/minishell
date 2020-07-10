@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 09:59:34 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/10 12:35:42 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 15:15:40 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int		throw_error(t_shell *shell, const char *cmd, const char *err,
 	return (FAILURE);
 }
 
-int		throw_malloc_error(void)
+int		throw_err_msg(const char *err)
 {
-	ft_dprintf(STDERR_FILENO, "minishell: malloc() failed\n");
-	return (-1);
+	ft_dprintf(STDERR_FILENO, "minishell: %s\n", err);
+	return (FAILURE);
 }

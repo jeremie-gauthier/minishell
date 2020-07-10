@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:02:55 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/10 13:53:28 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 15:15:15 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char		*access_file(const char *path, const char *filename);
 int			new_process(t_shell *shell, char **const env);
 int			exec(const t_shell *shell, char **const env);
 void		display_prompt(void);
-int			listen_stdin(t_shell *shell);
+void		listen_stdin(t_shell *shell);
 
 /*
 **	ERRORS
@@ -31,7 +31,7 @@ int			listen_stdin(t_shell *shell);
 
 int			throw_error(t_shell *shell, const char *cmd, const char *err,
 						const int exit_status);
-int			throw_malloc_error(void);
+int			throw_err_msg(const char *err);
 
 /*
 **	SIGNALS

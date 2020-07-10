@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 17:42:18 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/08 15:57:12 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 15:21:56 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	setenv_error(const char *err)
 {
 	ft_dprintf(STDERR_FILENO, "minishell: setenv: %s\n", err);
-	return (-1);
+	return (FAILURE);
 }
 
 int			setenv_builtin(t_shell *shell)
@@ -30,5 +30,5 @@ int			setenv_builtin(t_shell *shell)
 	if (upsert_env(shell, shell->argv[1], shell->argv[2]) < 0)
 		return (setenv_error("failed to insert new entry"));
 	shell->exps.last_exit_status = 0;
-	return (0);
+	return (SUCCESS);
 }

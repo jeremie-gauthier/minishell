@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 19:51:37 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/08 17:55:44 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 15:11:30 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	free_vars(char **key, char **value)
 {
 	ft_strdel(key);
 	ft_strdel(value);
-	return (-1);
+	return (FAILURE);
 }
 
 static void	set_key_value(char **ptrkey, char **ptrvalue,
@@ -64,7 +64,7 @@ static int	exp_replacing(t_shell *shell, char **str, const char *param)
 	if (!(*str = replace_substr(*str, key, value)))
 		return (free_vars(&key, &value));
 	free_vars(&key, &value);
-	return (0);
+	return (SUCCESS);
 }
 
 int			exp_param(t_shell *shell, char **str)
@@ -80,10 +80,10 @@ int			exp_param(t_shell *shell, char **str)
 		if (exp_replacing(shell, str, param) < 0)
 		{
 			*str = tmp;
-			return (-1);
+			return (FAILURE);
 		}
 		i = param - tmp + 1;
 		ft_strdel(&tmp);
 	}
-	return (0);
+	return (SUCCESS);
 }

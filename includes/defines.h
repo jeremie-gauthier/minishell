@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 11:24:14 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/09 07:40:26 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 14:12:52 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 
 # define FAILURE  -1
 # define SUCCESS  0
+# define MINOR_ERROR 1
 
 /*
 **  CMDS EXIT STATUS

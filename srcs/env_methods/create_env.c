@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:43:11 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/10 12:29:43 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 15:12:12 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int			create_env(t_shell *shell, char **const env)
 		{
 			shell->env_idx = i;
 			free_env(shell->env, shell->env_idx);
-			return (-1);
+			return (FAILURE);
 		}
 		i++;
 	}
@@ -57,5 +57,5 @@ int			create_env(t_shell *shell, char **const env)
 		increment_shell_level(shell);
 	else
 		default_env(shell);
-	return (0);
+	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:30:53 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/10 13:53:08 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 15:16:05 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*access_file(const char *path, const char *filename)
 
 	if (!(pathname = glue_str(path, filename, '/')))
 	{
-		throw_malloc_error();
+		throw_err_msg("malloc() failed");
 		return (NULL);
 	}
 	if (!is_accessible(pathname))

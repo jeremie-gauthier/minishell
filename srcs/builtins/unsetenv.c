@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:09:45 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/19 19:35:14 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 14:05:28 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ int			unsetenv_builtin(t_shell *shell)
 		i++;
 	}
 	shell->exps.last_exit_status = 0;
-	return (0);
+	return (SUCCESS);
 }

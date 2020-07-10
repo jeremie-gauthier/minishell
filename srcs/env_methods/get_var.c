@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:39:05 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/19 20:14:23 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 15:21:26 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ size_t	len_env_var(const char *var)
 	size_t	len;
 
 	len = var[0] == '$' ? 1 : 0;
-	while (var[len] && (ft_isalnum(var[len])
-			|| ft_strchr(ENV_ALLOWED_CHARS, var[len])))
+	while (var[len] && (ft_isalnum(var[len]) ||
+			ft_strchr(ENV_ALLOWED_CHARS, var[len])))
 		len++;
 	return (len);
 }
