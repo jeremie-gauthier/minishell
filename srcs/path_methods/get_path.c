@@ -61,7 +61,7 @@ char		*get_path(char **path_bin, const char *filename)
 	if (filename[0] == '.')
 		pathname = search_relative_path(filename);
 	else if (filename[0] == '/')
-		pathname = (char *)filename;
+		pathname = ft_strdup((char *)filename);
 	else
 		pathname = search_env_path(path_bin, filename);
 	return (pathname);
