@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:02:55 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/10 12:37:50 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/10 13:53:28 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <sys/wait.h>
 # include <signal.h>
 
+int			is_accessible(const char *pathname);
 char		*access_file(const char *path, const char *filename);
 int			new_process(t_shell *shell, char **const env);
 int			exec(const t_shell *shell, char **const env);
