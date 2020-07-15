@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:06:09 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/10 14:09:58 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/15 11:44:58 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	iter_cmds(t_shell *shell, const char *input)
 	i = 0;
 	while (i < len_cmds)
 	{
-		if ((shell->argv = ft_strsplit(cmds[i], " \t\n", &shell->argc)))
+		if ((shell->argv = ft_strsplit(cmds[i], WHITESPACES, &shell->argc)))
 		{
 			run_cmd(shell);
 			free_cmds(&shell);
