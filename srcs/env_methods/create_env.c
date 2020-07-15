@@ -6,11 +6,15 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:43:11 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/10 15:12:12 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/15 12:03:01 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*
+**	Increment SHLVL if exists or set it to 1 if not
+*/
 
 static void	increment_shell_level(t_shell *shell)
 {
@@ -26,6 +30,8 @@ static void	increment_shell_level(t_shell *shell)
 			ft_strdel(&shell_lvl_content);
 		}
 	}
+	else
+		upsert_env(shell, "SHLVL", "1");
 }
 
 static void	default_env(t_shell *shell)
