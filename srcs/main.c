@@ -56,6 +56,8 @@ int			main(int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
+	if (argc != 1)
+		return (throw_err_msg("Wrong number of arguments"));
 	if (shell_init(&shell, env) < 0)
 		return (FAILURE);
 	listen_stdin(&shell);
