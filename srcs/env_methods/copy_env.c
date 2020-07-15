@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printtab.c                                      :+:      :+:    :+:   */
+/*   copy_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/07 11:30:35 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/15 15:02:36 by jergauth         ###   ########.fr       */
+/*   Created: 2020/07/15 15:10:05 by jergauth          #+#    #+#             */
+/*   Updated: 2020/07/15 15:28:22 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-void	ft_printtab(char **tab)
+int			copy_env(char *env[ARR_BUFF], char *copy_env[ARR_BUFF])
 {
-	while (*tab)
+	size_t	i;
+
+	i = 0;
+	while (env[i] && i < ARR_BUFF)
 	{
-		ft_putstr(*tab);
-		ft_putchar('\n');
-		tab++;
+		if (!(copy_env[i] = ft_strdup(env[i])))
+		{
+			free_env(copy_env, i);
+			return (FAILURE);
+		}
+		i++;
 	}
+	return (SUCCESS);
 }

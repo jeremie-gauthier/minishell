@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 22:24:24 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/10 14:01:02 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/15 14:19:09 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,14 @@ char		*get_path(char **path_bin, const char *filename)
 	char	*pathname;
 
 	pathname = NULL;
-	if (filename[0] == '.')
-		pathname = search_relative_path(filename);
-	else if (filename[0] == '/')
-		pathname = search_absolute_path(filename);
-	else
-		pathname = search_env_path(path_bin, filename);
+	if (filename)
+	{
+		if (filename[0] == '.')
+			pathname = search_relative_path(filename);
+		else if (filename[0] == '/')
+			pathname = search_absolute_path(filename);
+		else
+			pathname = search_env_path(path_bin, filename);
+	}
 	return (pathname);
 }

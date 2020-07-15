@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:02:55 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/15 12:54:51 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/15 16:28:07 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ char		*get_var_name(const char *str);
 size_t		len_env_var(const char *var);
 int			upsert_env(t_shell *shell, char *key, char *value);
 int			create_env(t_shell *shell, char **const env);
+int			copy_env(char *env[ARR_BUFF], char *copy_env[ARR_BUFF]);
 void		free_env(char *env[ARR_BUFF], size_t env_idx);
 void		del_entry_env(t_shell *shell, const char *var);
 

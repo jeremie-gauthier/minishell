@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 11:07:01 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/15 12:52:42 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/15 14:50:56 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ typedef struct	s_vars
 {
 	char	*home;
 }				t_vars;
+
+typedef struct	s_envopts
+{
+	short	ignore_env;
+}				t_envopts;
 
 /*
 **	EXPANSIONS

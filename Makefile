@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 10:03:04 by jergauth          #+#    #+#              #
-#    Updated: 2019/11/29 10:06:41 by jergauth         ###   ########.fr        #
+#    Updated: 2020/07/15 18:11:29 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ ENV_DIR= $(SRCS_DIR)/env_methods
 ENV_SRCS=	get_var.c\
 			upsert_var.c\
 			create_env.c\
+			copy_env.c\
 			del_var.c\
 			free_env.c
 
