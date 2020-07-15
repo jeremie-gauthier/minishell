@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:07:07 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/10 15:18:35 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/15 11:59:23 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int			main(int argc, char **argv, char **env)
 	t_shell	shell;
 	int		last_exit_status;
 
-	(void)argc;
 	(void)argv;
 	if (argc != 1)
 		return (throw_err_msg("Wrong number of arguments"));
