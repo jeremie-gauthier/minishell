@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 11:07:01 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/08 15:44:18 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/15 12:52:42 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_shell
 	size_t		env_idx;
 	t_exp		exps;
 	t_status	status;
+	t_bool		nl_required;
 }				t_shell;
 
 typedef int		(*t_builtin)(t_shell*);

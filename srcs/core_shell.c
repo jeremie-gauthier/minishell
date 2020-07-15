@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:06:09 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/15 11:44:58 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/15 12:55:37 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,16 @@ void		free_cmds(t_shell **shell)
 	ft_tabdel((void**)(*shell)->argv, len);
 }
 
-void		display_prompt(void)
+void		display_prompt(t_shell *shell)
 {
 	char	cwd[256];
 	char	*dir;
 
+	if (shell && shell->nl_required)
+	{
+		ft_printf("%s%%{reset}\n", EOL_COLOR);
+		shell->nl_required = false;
+	}
 	if (getcwd(cwd, sizeof(cwd)))
 	{
 		if ((dir = ft_strrchr(cwd, '/')) && dir != cwd)
@@ -82,14 +87,14 @@ void		listen_stdin(t_shell *shell)
 {
 	char	*input;
 
-	display_prompt();
+	display_prompt(shell);
 	signal(SIGINT, &sigint_core);
 	while (shell->status == RUNNING && get_next_line(STDIN_FILENO, &input) > 0)
 	{
 		iter_cmds(shell, input);
 		ft_strdel(&input);
 		if (shell->status == RUNNING)
-			display_prompt();
+			display_prompt(shell);
 	}
 	if (input && input[0] == 0)
 		ft_printf("\n");
