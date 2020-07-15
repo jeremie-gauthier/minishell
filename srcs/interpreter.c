@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 10:30:53 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/10 15:16:05 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/15 11:43:13 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,3 @@ char	*access_file(const char *path, const char *filename)
 	}
 	return (pathname);
 }
-
