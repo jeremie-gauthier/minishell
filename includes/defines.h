@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 11:24:14 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/15 13:12:17 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/20 18:38:40 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@
 # define UNSETENV	"unsetenv"
 # define ENV		"env"
 # define EXIT		"exit"
+
+/*
+**	ENV OPTS
+*/
+
+# define END_OF_ARGS "--"
+# define IGNORE_ENV "-i"
+# define UNSET_ENV_VAR "-u"
 
 # define ENV_ALLOWED_CHARS	"-_+"
 
