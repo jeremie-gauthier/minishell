@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:42:31 by jergauth          #+#    #+#             */
-/*   Updated: 2019/11/12 11:42:43 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/20 23:11:44 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,16 @@ void	free_env(char *env[ARR_BUFF], size_t env_idx)
 		ft_strdel(&env[i]);
 		i++;
 	}
+}
+
+void  clear_new_env(char *new_env[ARR_BUFF])
+{
+  size_t  i;
+
+  i = 0;
+  while (new_env[i])
+  {
+    ft_strdel(&new_env[i]);
+    i++;
+  }
 }

@@ -6,7 +6,7 @@
 #    By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 10:03:04 by jergauth          #+#    #+#              #
-#    Updated: 2020/07/15 18:11:29 by jergauth         ###   ########.fr        #
+#    Updated: 2020/07/20 23:22:59 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ ENV_SRCS=	get_var.c\
 			create_env.c\
 			copy_env.c\
 			del_var.c\
-			free_env.c
+			free_env.c\
+			opts_parser.c
 
 PATH_DIR= $(SRCS_DIR)/path_methods
 PATH_SRCS=	create_path.c\
