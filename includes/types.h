@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 11:07:01 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/15 14:50:56 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/20 18:52:13 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct	s_vars
 typedef struct	s_envopts
 {
 	short	ignore_env;
+	char	**unset_vars;
+	size_t	len_unset_vars;
 }				t_envopts;
 
 /*
