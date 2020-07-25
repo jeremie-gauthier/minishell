@@ -6,7 +6,7 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 23:18:48 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/20 23:23:06 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/25 09:41:36 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ static int	alloc_unset_opts(size_t argc, char **argv, t_envopts *opts)
 	return (SUCCESS);
 }
 
-static void *tabdel_wrapper(void **tab, size_t size)
+static void	*tabdel_wrapper(void **tab, size_t size)
 {
-  ft_tabdel(tab, size);
-  return (NULL);
+	ft_tabdel(tab, size);
+	return (NULL);
 }
 
-char	**parse_env_opts(size_t argc, char **argv, t_envopts *opts)
+char		**parse_env_opts(size_t argc, char **argv, t_envopts *opts)
 {
 	size_t	i;
 	size_t	n_unset_var;
@@ -55,8 +55,8 @@ char	**parse_env_opts(size_t argc, char **argv, t_envopts *opts)
 		{
 			i++;
 			if (!(opts->unset_vars[n_unset_var] = ft_strdup(argv[i])))
-        return (tabdel_wrapper((void**)opts->unset_vars, n_unset_var));
-      n_unset_var++;
+				return (tabdel_wrapper((void**)opts->unset_vars, n_unset_var));
+			n_unset_var++;
 		}
 		i++;
 	}

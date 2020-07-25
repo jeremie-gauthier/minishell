@@ -6,14 +6,14 @@
 /*   By: jergauth <jergauth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 13:39:43 by jergauth          #+#    #+#             */
-/*   Updated: 2020/07/20 23:20:26 by jergauth         ###   ########.fr       */
+/*   Updated: 2020/07/25 09:37:40 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static void	spawn_child_process(t_shell *shell, char *child_process,
-                                char *new_env[ARR_BUFF])
+								char *new_env[ARR_BUFF])
 {
 	if ((shell->pathname = get_path(shell->path_bin, child_process)))
 	{
@@ -26,7 +26,7 @@ static void	spawn_child_process(t_shell *shell, char *child_process,
 		shell->exps.last_exit_status = CMD_NOT_FOUND;
 }
 
-static int filter_env(t_shell *shell, char **new_env, t_envopts *opts)
+static int	filter_env(t_shell *shell, char **new_env, t_envopts *opts)
 {
 	if (opts->ignore_env)
 		return (SUCCESS);
@@ -39,10 +39,10 @@ static int filter_env(t_shell *shell, char **new_env, t_envopts *opts)
 	return (SUCCESS);
 }
 
-static void env_builtin_action(t_shell *shell, char **child_process,
-                                char **new_env)
+static void	env_builtin_action(t_shell *shell, char **child_process,
+								char **new_env)
 {
-  char  **tmp_argv;
+	char	**tmp_argv;
 
 	tmp_argv = shell->argv;
 	if (*child_process == NULL)
@@ -74,7 +74,7 @@ int			env_builtin(t_shell *shell)
 		ft_tabdel((void**)opts.unset_vars, opts.len_unset_vars);
 		return (FAILURE);
 	}
-  env_builtin_action(shell, child_process, new_env);
-  clear_new_env(new_env);
+	env_builtin_action(shell, child_process, new_env);
+	clear_new_env(new_env);
 	return (SUCCESS);
 }
