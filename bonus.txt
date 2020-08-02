@@ -8,5 +8,9 @@ DOLLAR
 $?: show the last exit status
 $$: show the current pid
 
+ENV BUILTIN
+-i: ignore env
+-u <env_var>: unset the following environment variable
+
 SIGNALS:
 Ctrl+C: Ability to kill forked process
